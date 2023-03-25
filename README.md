@@ -1,2 +1,2 @@
-# harvest-sdk-dotnet
-Harvest Time Tracking Client Library for .NET
+# Harvest Time Tracking .NET Client Library
+
