@@ -12,6 +12,7 @@ public partial class HarvestServiceClient
     /// Builds the authorization URL for the Harvest API that can be used to authenticate the client.
     /// </summary>
     /// <returns>A <see cref="Uri"/> that can be used to authenticate the client.</returns>
+    /// <exception cref="InvalidOperationException">Thrown when called without the OAuthCredential set.</exception>
     public Uri BuildAuthorizationUrl()
     {
         if (this.authCredential is not OAuthCredential oauthCredential)

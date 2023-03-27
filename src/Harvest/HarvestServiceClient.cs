@@ -1,7 +1,11 @@
 namespace Harvest;
 
+using System;
+using System.Collections.Generic;
 using Authentication;
+using Common.Extensions;
 using Common.Requests;
+using Users;
 
 /// <summary>
 /// Defines the client used to communicate with the Harvest API.
@@ -23,11 +27,23 @@ public partial class HarvestServiceClient
     /// <param name="requestAdapter">The request adapter for sending requests.</param>
     public HarvestServiceClient(HarvestRequestAdapter requestAdapter)
     {
+        _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
+        this.PathParameters = new Dictionary<string, object>();
+        this.UrlTemplate = "{+baseurl}";
         this.RequestAdapter = requestAdapter;
+        this.authCredential = this.RequestAdapter.Credential;
+        this.RequestAdapter.BaseUrl = "https://api.harvestapp.com/v2";
+        this.PathParameters.TryAdd("baseurl", this.RequestAdapter.BaseUrl);
     }
 
     /// <summary>
-    /// Gets the <see cref="HarvestRequestAdapter"/> for sending requests.
+    /// Gets the builder for operations to manage users.
     /// </summary>
-    public HarvestRequestAdapter RequestAdapter { get; }
+    public UsersRequestBuilder Users => new(this.PathParameters, this.RequestAdapter);
+
+    private HarvestRequestAdapter RequestAdapter { get; }
+
+    private Dictionary<string, object> PathParameters { get; }
+
+    private string UrlTemplate { get; }
 }
