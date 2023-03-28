@@ -24,7 +24,7 @@ public class UsersRequestBuilder
         _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
         _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
 
-        this.UrlTemplate = "{+baseurl}/users{?%24isactive,%24updatedsince,%24page,%24perpage}";
+        this.UrlTemplate = "{+baseurl}/users{?is_active,updated_since,page,per_page}";
         this.PathParameters = new Dictionary<string, object>(pathParameters);
         this.RequestAdapter = requestAdapter;
     }
@@ -44,11 +44,16 @@ public class UsersRequestBuilder
     /// </summary>
     private string UrlTemplate { get; }
 
-    public UserEntryRequestBuilder this[long position]
+    /// <summary>
+    /// Gets the builder for operations to manage a specific user.
+    /// </summary>
+    /// <param name="userId">The ID of the user.</param>
+    /// <returns>A builder for operations to manage a specific user.</returns>
+    public UserEntryRequestBuilder this[long userId]
     {
         get
         {
-            var urlTemplateParams = new Dictionary<string, object>(this.PathParameters) { { UserEntryRequestBuilder.UserIdTemplateKey, position } };
+            var urlTemplateParams = new Dictionary<string, object>(this.PathParameters) { { "userid", userId } };
             return new UserEntryRequestBuilder(urlTemplateParams, this.RequestAdapter);
         }
     }
@@ -57,7 +62,7 @@ public class UsersRequestBuilder
     /// Retrieves a list of users.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#list-all-users
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -72,6 +77,9 @@ public class UsersRequestBuilder
     /// <summary>
     /// Creates a new user.
     /// </summary>
+    /// <remarks>
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#create-a-user
+    /// </remarks>
     /// <param name="body">The user to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -154,13 +162,8 @@ public class UsersRequestBuilder
     /// <summary>
     /// Defines the configuration for the request to retrieve a list of users.
     /// </summary>
-    public class UsersRequestBuilderGetRequestConfiguration
+    public class UsersRequestBuilderGetRequestConfiguration : BaseRequestConfiguration
     {
-        /// <summary>
-        /// Gets or sets the request headers.
-        /// </summary>
-        public Headers Headers { get; set; } = new();
-
         /// <summary>
         /// Gets or sets the query parameters for the request.
         /// </summary>
@@ -170,12 +173,8 @@ public class UsersRequestBuilder
     /// <summary>
     /// Defines the configuration for the request to create a user.
     /// </summary>
-    public class UsersRequestBuilderPostRequestConfiguration
+    public class UsersRequestBuilderPostRequestConfiguration : BaseRequestConfiguration
     {
-        /// <summary>
-        /// Gets or sets the request headers.
-        /// </summary>
-        public Headers Headers { get; set; } = new();
     }
 
     /// <summary>
@@ -186,25 +185,25 @@ public class UsersRequestBuilder
         /// <summary>
         /// Gets or sets a value indicating whether to only return active users or not.
         /// </summary>
-        [QueryParameter("%24isactive")]
+        [QueryParameter("is_active")]
         public bool? IsActive { get; set; }
 
         /// <summary>
         /// Gets or sets the given date to return only users that have been updated since that date.
         /// </summary>
-        [QueryParameter("%24updatedsince")]
+        [QueryParameter("updated_since")]
         public DateTime? UpdatedSince { get; set; }
 
         /// <summary>
         /// Gets or sets the page number to use in pagination.
         /// </summary>
-        [QueryParameter("%24page")]
+        [QueryParameter("page")]
         public int? Page { get; set; }
 
         /// <summary>
         /// Gets or sets the number of records to return per page between 1 and 2000.
         /// </summary>
-        [QueryParameter("%24perpage")]
+        [QueryParameter("per_page")]
         public int? PerPage { get; set; }
     }
 }
