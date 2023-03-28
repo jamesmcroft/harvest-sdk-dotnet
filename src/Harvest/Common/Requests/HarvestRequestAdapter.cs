@@ -81,6 +81,26 @@ public class HarvestRequestAdapter : IDisposable
         throw new HttpRequestException(responseContent);
     }
 
+    /// <summary>
+    /// Sends a request to the Harvest API with no expected response.
+    /// </summary>
+    /// <param name="requestInfo">The request information to send.</param>
+    /// <param name="cancellationToken">The optional cancellation token.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+    /// <exception cref="InvalidOperationException">Thrown when no response after sending the request.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when the requestInfo is <see langword="null"/>.</exception>
+    public async Task SendAsync(RequestInformation requestInfo, CancellationToken cancellationToken = default)
+    {
+        HttpResponseMessage response = await this.GetHttpResponseMessageAsync(requestInfo, cancellationToken);
+        requestInfo.Content?.Dispose();
+        string responseContent = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new HttpRequestException(responseContent);
+        }
+    }
+
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="requestInfo"/> is <see langword="null"/>.</exception>
     /// <exception cref="InvalidOperationException">Thrown when no response after sending the request.</exception>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>

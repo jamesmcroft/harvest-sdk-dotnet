@@ -54,7 +54,9 @@ public class UserEntryRequestBuilder
     /// <param name="cancellationToken">The optional cancellation token.</param>
     /// <returns>The user details.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
-    public async Task<User> GetAsync(Action<UserEntryRequestBuilderGetRequestConfiguration> requestConfiguration = default, CancellationToken cancellationToken = default)
+    public async Task<User> GetAsync(
+        Action<UserEntryRequestBuilderGetRequestConfiguration> requestConfiguration = default,
+        CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
         return await this.RequestAdapter.SendAsync<User>(requestInfo, cancellationToken);
@@ -83,15 +85,36 @@ public class UserEntryRequestBuilder
     }
 
     /// <summary>
+    /// Deletes a user.
+    /// </summary>
+    /// <remarks>
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#delete-a-user
+    /// </remarks>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <param name="cancellationToken">The optional cancellation token.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
+    /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+    public async Task DeleteAsync(
+        Action<UserEntryRequestBuilderDeleteRequestConfiguration> requestConfiguration = default,
+        CancellationToken cancellationToken = default)
+    {
+        RequestInformation requestInfo = this.ToDeleteRequestInformation(requestConfiguration);
+        await this.RequestAdapter.SendAsync(requestInfo, cancellationToken);
+    }
+
+    /// <summary>
     /// Builds the request to retrieve a user.
     /// </summary>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
-    public RequestInformation ToGetRequestInformation(Action<UserEntryRequestBuilderGetRequestConfiguration> requestConfiguration)
+    public RequestInformation ToGetRequestInformation(
+        Action<UserEntryRequestBuilderGetRequestConfiguration> requestConfiguration)
     {
         var requestInfo = new RequestInformation
         {
-            HttpMethod = Method.GET, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
+            HttpMethod = Method.GET,
+            UrlTemplate = this.UrlTemplate,
+            PathParameters = this.PathParameters,
         };
 
         requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
@@ -114,11 +137,14 @@ public class UserEntryRequestBuilder
     /// <param name="body">The request body.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
-    public RequestInformation ToPatchRequestInformation(User body, Action<UserEntryRequestBuilderPatchRequestConfiguration> requestConfiguration)
+    public RequestInformation ToPatchRequestInformation(User body,
+        Action<UserEntryRequestBuilderPatchRequestConfiguration> requestConfiguration)
     {
         var requestInfo = new RequestInformation
         {
-            HttpMethod = Method.PATCH, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
+            HttpMethod = Method.PATCH,
+            UrlTemplate = this.UrlTemplate,
+            PathParameters = this.PathParameters,
         };
 
         requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
@@ -139,6 +165,35 @@ public class UserEntryRequestBuilder
     }
 
     /// <summary>
+    /// Builds the request to delete a user.
+    /// </summary>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <returns>A request information object.</returns>
+    public RequestInformation ToDeleteRequestInformation(
+        Action<UserEntryRequestBuilderDeleteRequestConfiguration> requestConfiguration)
+    {
+        var requestInfo = new RequestInformation
+        {
+            HttpMethod = Method.DELETE,
+            UrlTemplate = this.UrlTemplate,
+            PathParameters = this.PathParameters,
+        };
+
+        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
+
+        if (requestConfiguration == null)
+        {
+            return requestInfo;
+        }
+
+        var requestConfig = new UserEntryRequestBuilderDeleteRequestConfiguration();
+        requestConfiguration.Invoke(requestConfig);
+        requestInfo.AddHeaders(requestConfig.Headers);
+
+        return requestInfo;
+    }
+
+    /// <summary>
     /// Defines the configuration for the request to get a user.
     /// </summary>
     public class UserEntryRequestBuilderGetRequestConfiguration : BaseRequestConfiguration
@@ -149,6 +204,13 @@ public class UserEntryRequestBuilder
     /// Defines the configuration for the request to update a user.
     /// </summary>
     public class UserEntryRequestBuilderPatchRequestConfiguration : BaseRequestConfiguration
+    {
+    }
+
+    /// <summary>
+    /// Define the configuration for the request to delete a user.
+    /// </summary>
+    public class UserEntryRequestBuilderDeleteRequestConfiguration : BaseRequestConfiguration
     {
     }
 }
