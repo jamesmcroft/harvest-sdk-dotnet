@@ -61,6 +61,28 @@ public class UserEntryRequestBuilder
     }
 
     /// <summary>
+    /// Updates a user.
+    /// </summary>
+    /// <remarks>
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#update-a-user
+    /// </remarks>
+    /// <param name="body">The user details to update. Any parameters not provided will be left unchanged.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <param name="cancellationToken">The optional cancellation token.</param>
+    /// <returns>The updated user details.</returns>
+    /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
+    public async Task<User> PatchAsync(
+        User body,
+        Action<UserEntryRequestBuilderPatchRequestConfiguration> requestConfiguration = default,
+        CancellationToken cancellationToken = default)
+    {
+        _ = body ?? throw new ArgumentNullException(nameof(body));
+        RequestInformation requestInfo = this.ToPatchRequestInformation(body, requestConfiguration);
+        return await this.RequestAdapter.SendAsync<User>(requestInfo, cancellationToken);
+    }
+
+    /// <summary>
     /// Builds the request to retrieve a user.
     /// </summary>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -87,10 +109,46 @@ public class UserEntryRequestBuilder
     }
 
     /// <summary>
+    /// Builds the request to update a user.
+    /// </summary>
+    /// <param name="body">The request body.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <returns>A request information object.</returns>
+    public RequestInformation ToPatchRequestInformation(User body, Action<UserEntryRequestBuilderPatchRequestConfiguration> requestConfiguration)
+    {
+        var requestInfo = new RequestInformation
+        {
+            HttpMethod = Method.PATCH, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
+        };
+
+        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
+        requestInfo.Headers.Add("Accept", "application/json");
+
+        requestInfo.SetJsonContent(body);
+
+        if (requestConfiguration == null)
+        {
+            return requestInfo;
+        }
+
+        var requestConfig = new UserEntryRequestBuilderPatchRequestConfiguration();
+        requestConfiguration.Invoke(requestConfig);
+        requestInfo.AddHeaders(requestConfig.Headers);
+
+        return requestInfo;
+    }
+
+    /// <summary>
     /// Defines the configuration for the request to get a user.
     /// </summary>
     public class UserEntryRequestBuilderGetRequestConfiguration : BaseRequestConfiguration
     {
     }
-}
 
+    /// <summary>
+    /// Defines the configuration for the request to update a user.
+    /// </summary>
+    public class UserEntryRequestBuilderPatchRequestConfiguration : BaseRequestConfiguration
+    {
+    }
+}

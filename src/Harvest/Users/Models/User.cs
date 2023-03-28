@@ -49,25 +49,25 @@ public class User
     /// Gets or set a value indicating whether the user has access to all future projects.
     /// </summary>
     [JsonProperty("has_access_to_all_future_projects")]
-    public bool HasAccessToAllFutureProjects { get; set; }
+    public bool? HasAccessToAllFutureProjects { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the user is a contractor.
     /// </summary>
     [JsonProperty("is_contractor")]
-    public bool IsContractor { get; set; }
+    public bool? IsContractor { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the user is active.
     /// </summary>
     [JsonProperty("is_active")]
-    public bool IsActive { get; set; }
+    public bool? IsActive { get; set; }
 
     /// <summary>
     /// Gets or sets the date/time the user was created.
     /// </summary>
     [JsonProperty("created_at")]
-    public DateTime CreatedAt { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
     /// <summary>
     /// Gets or sets the date/time the user was last updated.
