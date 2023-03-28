@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Extensions;
+using Newtonsoft.Json;
 using Tavis.UriTemplates;
 
 /// <summary>
@@ -13,6 +14,7 @@ using Tavis.UriTemplates;
 /// </summary>
 public class RequestInformation
 {
+    private const string ContentTypeHeader = "Content-Type";
     private Uri rawUri;
 
     /// <summary>
@@ -101,6 +103,13 @@ public class RequestInformation
     /// </summary>
     public Stream Content { get; set; } = Stream.Null;
 
+    private JsonSerializerSettings JsonSerializerSettings { get; } = new()
+    {
+        NullValueHandling = NullValueHandling.Ignore,
+        DateFormatHandling = DateFormatHandling.IsoDateFormat,
+        DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+    };
+
     /// <summary>
     /// Adds query parameters from a source object that has properties decorated with the <see cref="QueryParameterAttribute"/> attribute.
     /// </summary>
@@ -144,6 +153,17 @@ public class RequestInformation
         }
 
         this.Headers.AddAll(headers);
+    }
+
+    /// <summary>
+    /// Sets the request body content to a JSON representation of the specified item.
+    /// </summary>
+    /// <typeparam name="T">The type of item to serialize as JSON.</typeparam>
+    /// <param name="item">The item to serialize.</param>
+    public void SetJsonContent<T>(T item)
+    {
+        this.Headers.Add(ContentTypeHeader, "application/json");
+        this.Content = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(item, this.JsonSerializerSettings)));
     }
 
     private static object GetSanitizedValue(object value)

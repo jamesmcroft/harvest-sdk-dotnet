@@ -44,6 +44,15 @@ public class UsersRequestBuilder
     /// </summary>
     private string UrlTemplate { get; }
 
+    public UserEntryRequestBuilder this[long position]
+    {
+        get
+        {
+            var urlTemplateParams = new Dictionary<string, object>(this.PathParameters) { { UserEntryRequestBuilder.UserIdTemplateKey, position } };
+            return new UserEntryRequestBuilder(urlTemplateParams, this.RequestAdapter);
+        }
+    }
+
     /// <summary>
     /// Retrieves a list of users.
     /// </summary>
@@ -58,6 +67,24 @@ public class UsersRequestBuilder
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
         return await this.RequestAdapter.SendAsync<UsersResponse>(requestInfo, cancellationToken);
+    }
+
+    /// <summary>
+    /// Creates a new user.
+    /// </summary>
+    /// <param name="body">The user to create.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <param name="cancellationToken">The optional cancellation token.</param>
+    /// <returns>The created user.</returns>
+    /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
+    public async Task<User> PostAsync(
+        User body,
+        Action<UsersRequestBuilderPostRequestConfiguration> requestConfiguration = default,
+        CancellationToken cancellationToken = default)
+    {
+        RequestInformation requestInfo = this.ToPostRequestInformation(body, requestConfiguration);
+        return await this.RequestAdapter.SendAsync<User>(requestInfo, cancellationToken);
     }
 
     /// <summary>
@@ -91,6 +118,40 @@ public class UsersRequestBuilder
     }
 
     /// <summary>
+    /// Builds the request to create a user.
+    /// </summary>
+    /// <param name="body">The request body.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
+    /// <returns>A request information object.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
+    public RequestInformation ToPostRequestInformation(User body, Action<UsersRequestBuilderPostRequestConfiguration> requestConfiguration)
+    {
+        _ = body ?? throw new ArgumentNullException(nameof(body));
+        var requestInfo = new RequestInformation
+        {
+            HttpMethod = Method.POST,
+            UrlTemplate = this.UrlTemplate,
+            PathParameters = this.PathParameters
+        };
+
+        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
+        requestInfo.Headers.Add("Accept", "application/json");
+
+        requestInfo.SetJsonContent(body);
+
+        if (requestConfiguration == null)
+        {
+            return requestInfo;
+        }
+
+        var requestConfig = new UsersRequestBuilderPostRequestConfiguration();
+        requestConfiguration.Invoke(requestConfig);
+        requestInfo.AddHeaders(requestConfig.Headers);
+
+        return requestInfo;
+    }
+
+    /// <summary>
     /// Defines the configuration for the request to retrieve a list of users.
     /// </summary>
     public class UsersRequestBuilderGetRequestConfiguration
@@ -104,6 +165,17 @@ public class UsersRequestBuilder
         /// Gets or sets the query parameters for the request.
         /// </summary>
         public UsersRequestBuilderGetQueryParameters QueryParameters { get; set; } = new();
+    }
+
+    /// <summary>
+    /// Defines the configuration for the request to create a user.
+    /// </summary>
+    public class UsersRequestBuilderPostRequestConfiguration
+    {
+        /// <summary>
+        /// Gets or sets the request headers.
+        /// </summary>
+        public Headers Headers { get; set; } = new();
     }
 
     /// <summary>
