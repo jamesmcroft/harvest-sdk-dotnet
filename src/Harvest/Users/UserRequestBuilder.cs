@@ -7,19 +7,20 @@ using System.Threading;
 using System.Threading.Tasks;
 using Common.Requests;
 using Models;
+using Teammates;
 
 /// <summary>
 /// Defines the builder for operations to manage a specific user.
 /// </summary>
-public class UserEntryRequestBuilder
+public class UserRequestBuilder
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="UserEntryRequestBuilder"/> class with the specified path parameters and request adapter.
+    /// Initializes a new instance of the <see cref="UserRequestBuilder"/> class with the specified path parameters and request adapter.
     /// </summary>
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public UserEntryRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
+    public UserRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
     {
         _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
         _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
@@ -28,6 +29,11 @@ public class UserEntryRequestBuilder
         this.PathParameters = new Dictionary<string, object>(pathParameters);
         this.RequestAdapter = requestAdapter;
     }
+
+    /// <summary>
+    /// Gets the builder for operations to manage the teammates for the user.
+    /// </summary>
+    public TeammatesRequestBuilder Teammates => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the path parameters to use to build the request URL.
@@ -55,7 +61,7 @@ public class UserEntryRequestBuilder
     /// <returns>The user details.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
     public async Task<User> GetAsync(
-        Action<UserEntryRequestBuilderGetRequestConfiguration> requestConfiguration = default,
+        Action<UserRequestBuilderGetRequestConfiguration> requestConfiguration = default,
         CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
@@ -76,7 +82,7 @@ public class UserEntryRequestBuilder
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
     public async Task<User> PatchAsync(
         User body,
-        Action<UserEntryRequestBuilderPatchRequestConfiguration> requestConfiguration = default,
+        Action<UserRequestBuilderPatchRequestConfiguration> requestConfiguration = default,
         CancellationToken cancellationToken = default)
     {
         _ = body ?? throw new ArgumentNullException(nameof(body));
@@ -95,7 +101,7 @@ public class UserEntryRequestBuilder
     /// <returns>A task that represents the asynchronous operation.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
     public async Task DeleteAsync(
-        Action<UserEntryRequestBuilderDeleteRequestConfiguration> requestConfiguration = default,
+        Action<UserRequestBuilderDeleteRequestConfiguration> requestConfiguration = default,
         CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToDeleteRequestInformation(requestConfiguration);
@@ -108,7 +114,7 @@ public class UserEntryRequestBuilder
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToGetRequestInformation(
-        Action<UserEntryRequestBuilderGetRequestConfiguration> requestConfiguration)
+        Action<UserRequestBuilderGetRequestConfiguration> requestConfiguration)
     {
         var requestInfo = new RequestInformation
         {
@@ -125,7 +131,7 @@ public class UserEntryRequestBuilder
             return requestInfo;
         }
 
-        var requestConfig = new UserEntryRequestBuilderGetRequestConfiguration();
+        var requestConfig = new UserRequestBuilderGetRequestConfiguration();
         requestConfiguration(requestConfig);
         requestInfo.AddHeaders(requestConfig.Headers);
         return requestInfo;
@@ -138,7 +144,7 @@ public class UserEntryRequestBuilder
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToPatchRequestInformation(User body,
-        Action<UserEntryRequestBuilderPatchRequestConfiguration> requestConfiguration)
+        Action<UserRequestBuilderPatchRequestConfiguration> requestConfiguration)
     {
         var requestInfo = new RequestInformation
         {
@@ -157,7 +163,7 @@ public class UserEntryRequestBuilder
             return requestInfo;
         }
 
-        var requestConfig = new UserEntryRequestBuilderPatchRequestConfiguration();
+        var requestConfig = new UserRequestBuilderPatchRequestConfiguration();
         requestConfiguration.Invoke(requestConfig);
         requestInfo.AddHeaders(requestConfig.Headers);
 
@@ -170,7 +176,7 @@ public class UserEntryRequestBuilder
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToDeleteRequestInformation(
-        Action<UserEntryRequestBuilderDeleteRequestConfiguration> requestConfiguration)
+        Action<UserRequestBuilderDeleteRequestConfiguration> requestConfiguration)
     {
         var requestInfo = new RequestInformation
         {
@@ -186,7 +192,7 @@ public class UserEntryRequestBuilder
             return requestInfo;
         }
 
-        var requestConfig = new UserEntryRequestBuilderDeleteRequestConfiguration();
+        var requestConfig = new UserRequestBuilderDeleteRequestConfiguration();
         requestConfiguration.Invoke(requestConfig);
         requestInfo.AddHeaders(requestConfig.Headers);
 
@@ -196,21 +202,21 @@ public class UserEntryRequestBuilder
     /// <summary>
     /// Defines the configuration for the request to get a user.
     /// </summary>
-    public class UserEntryRequestBuilderGetRequestConfiguration : BaseRequestConfiguration
+    public class UserRequestBuilderGetRequestConfiguration : RequestConfiguration
     {
     }
 
     /// <summary>
     /// Defines the configuration for the request to update a user.
     /// </summary>
-    public class UserEntryRequestBuilderPatchRequestConfiguration : BaseRequestConfiguration
+    public class UserRequestBuilderPatchRequestConfiguration : RequestConfiguration
     {
     }
 
     /// <summary>
     /// Define the configuration for the request to delete a user.
     /// </summary>
-    public class UserEntryRequestBuilderDeleteRequestConfiguration : BaseRequestConfiguration
+    public class UserRequestBuilderDeleteRequestConfiguration : RequestConfiguration
     {
     }
 }

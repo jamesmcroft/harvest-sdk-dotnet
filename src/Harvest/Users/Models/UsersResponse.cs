@@ -1,13 +1,13 @@
 namespace Harvest.Users.Models;
 
 using System.Collections.Generic;
-using Harvest.Common.Responses;
+using Common.Responses;
 using Newtonsoft.Json;
 
 /// <summary>
 /// Defines the response for a list of users.
 /// </summary>
-public class UsersResponse : BaseEntryPaginationResponse
+public class UsersResponse : PaginatedEntriesResponse
 {
     /// <summary>
     /// Gets or sets the users in the current page.

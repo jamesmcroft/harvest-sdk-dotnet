@@ -49,12 +49,12 @@ public class UsersRequestBuilder
     /// </summary>
     /// <param name="userId">The ID of the user.</param>
     /// <returns>A builder for operations to manage a specific user.</returns>
-    public UserEntryRequestBuilder this[long userId]
+    public UserRequestBuilder this[long userId]
     {
         get
         {
             var urlTemplateParams = new Dictionary<string, object>(this.PathParameters) { { "userid", userId } };
-            return new UserEntryRequestBuilder(urlTemplateParams, this.RequestAdapter);
+            return new UserRequestBuilder(urlTemplateParams, this.RequestAdapter);
         }
     }
 
@@ -162,7 +162,7 @@ public class UsersRequestBuilder
     /// <summary>
     /// Defines the configuration for the request to retrieve a list of users.
     /// </summary>
-    public class UsersRequestBuilderGetRequestConfiguration : BaseRequestConfiguration
+    public class UsersRequestBuilderGetRequestConfiguration : RequestConfiguration
     {
         /// <summary>
         /// Gets or sets the query parameters for the request.
@@ -173,14 +173,14 @@ public class UsersRequestBuilder
     /// <summary>
     /// Defines the configuration for the request to create a user.
     /// </summary>
-    public class UsersRequestBuilderPostRequestConfiguration : BaseRequestConfiguration
+    public class UsersRequestBuilderPostRequestConfiguration : RequestConfiguration
     {
     }
 
     /// <summary>
     /// Defines the query parameters for the request to retrieve a list of users.
     /// </summary>
-    public class UsersRequestBuilderGetQueryParameters
+    public class UsersRequestBuilderGetQueryParameters : PaginatedQueryParameters
     {
         /// <summary>
         /// Gets or sets a value indicating whether to only return active users or not.
@@ -193,17 +193,5 @@ public class UsersRequestBuilder
         /// </summary>
         [QueryParameter("updated_since")]
         public DateTime? UpdatedSince { get; set; }
-
-        /// <summary>
-        /// Gets or sets the page number to use in pagination.
-        /// </summary>
-        [QueryParameter("page")]
-        public int? Page { get; set; }
-
-        /// <summary>
-        /// Gets or sets the number of records to return per page between 1 and 2000.
-        /// </summary>
-        [QueryParameter("per_page")]
-        public int? PerPage { get; set; }
     }
 }

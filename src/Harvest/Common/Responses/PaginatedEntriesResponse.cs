@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 /// <summary>
 /// Defines the base response for paginated entries.
 /// </summary>
-public class BaseEntryPaginationResponse
+public class PaginatedEntriesResponse
 {
     /// <summary>
     /// Gets or sets the total number of entries per page.
