@@ -40,18 +40,6 @@ public class User : UserSummary
     public bool? IsActive { get; set; }
 
     /// <summary>
-    /// Gets or sets the date/time the user was created.
-    /// </summary>
-    [JsonProperty("created_at")]
-    public DateTime? CreatedAt { get; set; }
-
-    /// <summary>
-    /// Gets or sets the date/time the user was last updated.
-    /// </summary>
-    [JsonProperty("updated_at")]
-    public DateTime? UpdatedAt { get; set; }
-
-    /// <summary>
     /// Gets or sets the number of hours per week the user is available to work in seconds.
     /// </summary>
     [JsonProperty("weekly_capacity")]

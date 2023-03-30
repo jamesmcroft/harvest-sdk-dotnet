@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using BillableRates;
 using Common.Requests;
 using Models;
 using Teammates;
@@ -34,6 +35,11 @@ public class UserRequestBuilder
     /// Gets the builder for operations to manage the teammates for the user.
     /// </summary>
     public TeammatesRequestBuilder Teammates => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
+    /// Gets the builder for operations to manage the billable rates for the user.
+    /// </summary>
+    public BillableRatesRequestBuilder BillableRates => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the path parameters to use to build the request URL.

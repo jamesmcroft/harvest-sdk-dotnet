@@ -1,18 +1,13 @@
 namespace Harvest.Users.Models;
 
+using Common.Responses;
 using Newtonsoft.Json;
 
 /// <summary>
 /// Defines the summary detail of a user.
 /// </summary>
-public class UserSummary
+public class UserSummary : Entry
 {
-    /// <summary>
-    /// Gets or sets the unique identifier for the user.
-    /// </summary>
-    [JsonProperty("id")]
-    public long Id { get; set; }
-
     /// <summary>
     /// Gets or sets the first name for the user.
     /// </summary>
