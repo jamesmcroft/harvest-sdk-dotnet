@@ -143,7 +143,8 @@ public class UserRequestBuilder
     /// <param name="body">The request body.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
-    public RequestInformation ToPatchRequestInformation(User body,
+    public RequestInformation ToPatchRequestInformation(
+        User body,
         Action<UserRequestBuilderPatchRequestConfiguration> requestConfiguration)
     {
         var requestInfo = new RequestInformation
