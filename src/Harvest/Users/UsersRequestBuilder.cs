@@ -87,7 +87,7 @@ public class UsersRequestBuilder
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
     public async Task<User> PostAsync(
-        User body,
+        CreateUser body,
         Action<UsersRequestBuilderPostRequestConfiguration> requestConfiguration = default,
         CancellationToken cancellationToken = default)
     {
@@ -132,7 +132,7 @@ public class UsersRequestBuilder
     /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
     /// <returns>A request information object.</returns>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
-    public RequestInformation ToPostRequestInformation(User body, Action<UsersRequestBuilderPostRequestConfiguration> requestConfiguration)
+    public RequestInformation ToPostRequestInformation(CreateUser body, Action<UsersRequestBuilderPostRequestConfiguration> requestConfiguration)
     {
         _ = body ?? throw new ArgumentNullException(nameof(body));
         var requestInfo = new RequestInformation
