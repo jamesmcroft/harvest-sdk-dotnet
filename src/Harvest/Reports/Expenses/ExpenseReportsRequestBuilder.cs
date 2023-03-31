@@ -42,6 +42,11 @@ public class ExpenseReportsRequestBuilder
     public CategoriesExpenseReportsRequestBuilder Categories => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
+    /// Gets the builder for operations to manage team expense reports.
+    /// </summary>
+    public TeamExpenseReportsRequestBuilder Team => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
     /// Gets the path parameters to use to build the request URL.
     /// </summary>
     private Dictionary<string, object> PathParameters { get; }
