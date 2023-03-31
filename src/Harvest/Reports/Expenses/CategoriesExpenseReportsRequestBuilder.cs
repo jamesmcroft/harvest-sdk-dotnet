@@ -55,12 +55,12 @@ public class CategoriesExpenseReportsRequestBuilder
     /// <param name="cancellationToken">The optional cancellation token.</param>
     /// <returns>A collection of users.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
-    public async Task<ExpenseReportsResponse<ProjectExpenseReport>> GetAsync(
+    public async Task<ExpenseReportsResponse<CategoryExpenseReport>> GetAsync(
         Action<CategoriesExpenseReportsRequestBuilderGetRequestConfiguration> requestConfiguration = default,
         CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
-        return await this.RequestAdapter.SendAsync<ExpenseReportsResponse<ProjectExpenseReport>>(requestInfo,
+        return await this.RequestAdapter.SendAsync<ExpenseReportsResponse<CategoryExpenseReport>>(requestInfo,
             cancellationToken);
     }
 
