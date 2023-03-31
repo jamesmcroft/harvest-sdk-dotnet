@@ -1,35 +1,35 @@
-namespace Harvest.Reports;
+namespace Harvest.Reports.Expenses;
+
+using System.Collections.Generic;
 
 using System;
-using System.Collections.Generic;
 using Common.Requests;
-using Expenses;
 
 /// <summary>
-/// Defines the builder for operations to manage reports.
+/// Defines the builder for operations to manage expense reports.
 /// </summary>
-public class ReportsRequestBuilder
+public class ExpenseReportsRequestBuilder
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="ReportsRequestBuilder"/> class with the specified path parameters and request adapter.
+    /// Initializes a new instance of the <see cref="ExpenseReportsRequestBuilder"/> class with the specified path parameters and request adapter.
     /// </summary>
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public ReportsRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
+    public ExpenseReportsRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
     {
         _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
         _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
 
-        this.UrlTemplate = "{+baseurl}/reports";
+        this.UrlTemplate = "{+baseurl}/reports/expenses";
         this.PathParameters = new Dictionary<string, object>(pathParameters);
         this.RequestAdapter = requestAdapter;
     }
 
     /// <summary>
-    /// Gets the builder for operations to manage expense reports.
+    /// Gets the builder for operations to manage clients expense reports.
     /// </summary>
-    public ExpenseReportsRequestBuilder Expenses => new(this.PathParameters, this.RequestAdapter);
+    public ClientsExpenseReportsRequestBuilder Clients => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the path parameters to use to build the request URL.

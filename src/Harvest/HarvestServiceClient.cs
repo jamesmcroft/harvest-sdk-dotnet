@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Authentication;
 using Common.Extensions;
 using Common.Requests;
+using Reports;
 using Users;
 
 /// <summary>
@@ -35,6 +36,11 @@ public partial class HarvestServiceClient
         this.RequestAdapter.BaseUrl = "https://api.harvestapp.com/v2";
         this.PathParameters.TryAdd("baseurl", this.RequestAdapter.BaseUrl);
     }
+
+    /// <summary>
+    /// Gets the builder for operations to manage reports.
+    /// </summary>
+    public ReportsRequestBuilder Reports => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the builder for operations to manage users.
