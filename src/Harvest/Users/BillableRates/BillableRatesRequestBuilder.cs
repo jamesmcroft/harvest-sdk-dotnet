@@ -65,9 +65,9 @@ public class BillableRatesRequestBuilder
     /// <remarks>
     /// For more information: https://help.getharvest.com/api-v2/users-api/users/billable-rates/#list-all-billable-rates-for-a-specific-user
     /// </remarks>
-    /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
-    /// <returns>A collection of teammates.</returns>
+    /// <returns>A collection of billable rates.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
     public async Task<BillableRatesResponse> GetAsync(
         Action<BillableRatesRequestBuilderGetRequestConfiguration> requestConfiguration = default,
@@ -101,7 +101,7 @@ public class BillableRatesRequestBuilder
     /// <summary>
     /// Builds the request to retrieve a list of billable rates for the user.
     /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToGetRequestInformation(
         Action<BillableRatesRequestBuilderGetRequestConfiguration> requestConfiguration)

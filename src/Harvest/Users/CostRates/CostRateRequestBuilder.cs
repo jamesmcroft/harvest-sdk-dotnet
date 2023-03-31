@@ -66,7 +66,7 @@ public class CostRateRequestBuilder
     /// <summary>
     /// Builds the request to retrieve a cost rate for a user.
     /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToGetRequestInformation(
         Action<BillableRateRequestBuilderGetRequestConfiguration> requestConfiguration)

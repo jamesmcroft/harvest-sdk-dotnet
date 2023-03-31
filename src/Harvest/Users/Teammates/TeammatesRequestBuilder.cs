@@ -50,7 +50,7 @@ public class TeammatesRequestBuilder
     /// <remarks>
     /// For more information: https://help.getharvest.com/api-v2/users-api/users/teammates/#list-all-assigned-teammates-for-a-specific-user
     /// </remarks>
-    /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
     /// <returns>A collection of teammates.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
@@ -69,7 +69,7 @@ public class TeammatesRequestBuilder
     /// For more information: https://help.getharvest.com/api-v2/users-api/users/teammates/#update-a-users-assigned-teammates
     /// </remarks>
     /// <param name="body">The request body.</param>
-    /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
     /// <returns>A collection of teammates.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
@@ -85,7 +85,7 @@ public class TeammatesRequestBuilder
     /// <summary>
     /// Builds the request to retrieve a list of teammates for the user.
     /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToGetRequestInformation(Action<TeammatesRequestBuilderGetRequestConfiguration> requestConfiguration)
     {
@@ -115,9 +115,9 @@ public class TeammatesRequestBuilder
     /// <summary>
     /// Builds the request for updating a list of teammates for the user.
     /// </summary>
-    /// <param name="body"></param>
-    /// <param name="requestConfiguration"></param>
-    /// <returns></returns>
+    /// <param name="body">The request body.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <returns>A request information object.</returns>
     public RequestInformation ToPatchRequestInformation(
         UserTeammates body,
         Action<TeammatesRequestBuilderPatchRequestConfiguration> requestConfiguration)

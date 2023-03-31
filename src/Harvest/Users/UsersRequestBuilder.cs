@@ -64,7 +64,7 @@ public class UsersRequestBuilder
     /// <remarks>
     /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#list-all-users
     /// </remarks>
-    /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
     /// <returns>A collection of users.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
@@ -98,7 +98,7 @@ public class UsersRequestBuilder
     /// <summary>
     /// Builds the request to retrieve a list of users.
     /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToGetRequestInformation(Action<UsersRequestBuilderGetRequestConfiguration> requestConfiguration = default)
     {
@@ -129,7 +129,7 @@ public class UsersRequestBuilder
     /// Builds the request to create a user.
     /// </summary>
     /// <param name="body">The request body.</param>
-    /// <param name="requestConfiguration">The configuration for the request such as headers and query parameters.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
     public RequestInformation ToPostRequestInformation(CreateUser body, Action<UsersRequestBuilderPostRequestConfiguration> requestConfiguration)

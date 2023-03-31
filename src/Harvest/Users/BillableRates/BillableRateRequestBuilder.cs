@@ -53,7 +53,7 @@ public class BillableRateRequestBuilder
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
-    /// <returns>The user details.</returns>
+    /// <returns>The billable rate details.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
     public async Task<BillableRate> GetAsync(
         Action<BillableRateRequestBuilderGetRequestConfiguration> requestConfiguration = default,
@@ -63,6 +63,11 @@ public class BillableRateRequestBuilder
         return await this.RequestAdapter.SendAsync<BillableRate>(requestInfo, cancellationToken);
     }
 
+    /// <summary>
+    /// Builds the request to retrieve a billable rate for a user.
+    /// </summary>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <returns>A request information object.</returns>
     public RequestInformation ToGetRequestInformation(
         Action<BillableRateRequestBuilderGetRequestConfiguration> requestConfiguration)
     {
