@@ -9,6 +9,7 @@ using BillableRates;
 using Common.Requests;
 using CostRates;
 using Models;
+using ProjectAssignments;
 using Teammates;
 
 /// <summary>
@@ -46,6 +47,11 @@ public class UserRequestBuilder
     /// Gets the builder for operations to manage the cost rates for the user.
     /// </summary>
     public CostRatesRequestBuilder CostRates => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
+    /// Gets the builder for operations to manage the project assignments for the user.
+    /// </summary>
+    public ProjectAssignmentsRequestBuilder ProjectAssignments => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the path parameters to use to build the request URL.
