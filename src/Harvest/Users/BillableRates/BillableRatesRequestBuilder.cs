@@ -46,6 +46,20 @@ public class BillableRatesRequestBuilder
     private string UrlTemplate { get; }
 
     /// <summary>
+    /// Gets the builder for operations to manage a specific billable rate of the user.
+    /// </summary>
+    /// <param name="billableRateId">The ID of the billable rate.</param>
+    /// <returns>A builder for operations to manage a specific billable rate of the user.</returns>
+    public BillableRateRequestBuilder this[long billableRateId]
+    {
+        get
+        {
+            var urlTemplateParams = new Dictionary<string, object>(this.PathParameters) { { "billablerateid", billableRateId } };
+            return new BillableRateRequestBuilder(urlTemplateParams, this.RequestAdapter);
+        }
+    }
+
+    /// <summary>
     /// Retrieves a list of billable rates for the user.
     /// </summary>
     /// <remarks>
