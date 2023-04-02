@@ -41,7 +41,7 @@ public class TaskAssignment : Entry
     public decimal? HourlyRate { get; set; }
 
     /// <summary>
-    /// Gets or sets the budget used when the projects BudgetBy is task or task_fees.
+    /// Gets or sets the budget used when the project's BudgetBy is Task or TaskFees.
     /// </summary>
     [JsonProperty("budget")]
     public decimal? Budget { get; set; }

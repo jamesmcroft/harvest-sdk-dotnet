@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Common.Requests;
 using Expenses;
+using ProjectBudget;
 using Time;
 using Uninvoiced;
 
@@ -42,6 +43,11 @@ public class ReportsRequestBuilder
     /// Gets the builder for operations to manage time reports.
     /// </summary>
     public TimeReportsRequestBuilder Time => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
+    /// Gets the builder for operations to manage project budget reports.
+    /// </summary>
+    public ProjectBudgetReportsRequestBuilder ProjectBudget => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the path parameters to use to build the request URL.

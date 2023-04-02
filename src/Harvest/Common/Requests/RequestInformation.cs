@@ -107,7 +107,7 @@ public class RequestInformation
     {
         NullValueHandling = NullValueHandling.Ignore,
         DateFormatHandling = DateFormatHandling.IsoDateFormat,
-        DateTimeZoneHandling = DateTimeZoneHandling.Utc,
+        DateTimeZoneHandling = DateTimeZoneHandling.Utc
     };
 
     /// <summary>
