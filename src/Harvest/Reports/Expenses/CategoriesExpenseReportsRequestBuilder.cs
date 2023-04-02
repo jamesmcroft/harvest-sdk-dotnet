@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Requests;
+using Harvest.Common.Responses;
+using Harvest.Reports.Models;
 using Models;
 
 /// <summary>
@@ -53,14 +55,14 @@ public class CategoriesExpenseReportsRequestBuilder
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
-    /// <returns>A collection of users.</returns>
+    /// <returns>A collection of categories expense reports.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
-    public async Task<ExpenseReportsResponse<CategoryExpenseReport>> GetAsync(
+    public async Task<ResultsResponse<CategoryExpenseReport>> GetAsync(
         Action<CategoriesExpenseReportsRequestBuilderGetRequestConfiguration> requestConfiguration = default,
         CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
-        return await this.RequestAdapter.SendAsync<ExpenseReportsResponse<CategoryExpenseReport>>(requestInfo,
+        return await this.RequestAdapter.SendAsync<ResultsResponse<CategoryExpenseReport>>(requestInfo,
             cancellationToken);
     }
 
@@ -107,7 +109,7 @@ public class CategoriesExpenseReportsRequestBuilder
     /// <summary>
     /// Defines the query parameters for the request to retrieve a list of categories expense reports.
     /// </summary>
-    public class CategoriesExpenseReportsRequestBuilderGetQueryParameters : ExpenseReportsQueryParameters
+    public class CategoriesExpenseReportsRequestBuilderGetQueryParameters : ReportsQueryParameters
     {
     }
 }

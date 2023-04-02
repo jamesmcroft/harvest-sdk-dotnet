@@ -1,12 +1,12 @@
-namespace Harvest.Reports.Expenses.Models;
+namespace Harvest.Reports.Models;
 
 using System;
 using Common.Requests;
 
 /// <summary>
-/// Defines the parameters for the expense reports report.
+/// Defines the parameters for reports.
 /// </summary>
-public class ExpenseReportsQueryParameters : PaginatedQueryParameters
+public class ReportsQueryParameters : PaginatedQueryParameters
 {
     /// <summary>
     /// Gets or sets the date range from which to retrieve expense reports. Defaults to the current date.

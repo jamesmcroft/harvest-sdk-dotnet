@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Common.Requests;
 using Expenses;
+using Uninvoiced;
 
 /// <summary>
 /// Defines the builder for operations to manage reports.
@@ -30,6 +31,11 @@ public class ReportsRequestBuilder
     /// Gets the builder for operations to manage expense reports.
     /// </summary>
     public ExpenseReportsRequestBuilder Expenses => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
+    /// Gets the builder for operations to manage uninvoiced reports.
+    /// </summary>
+    public UninvoicedReportsRequestBuilder Uninvoiced => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the path parameters to use to build the request URL.
