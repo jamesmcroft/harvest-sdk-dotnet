@@ -45,6 +45,20 @@ public class RolesRequestBuilder
     private string UrlTemplate { get; }
 
     /// <summary>
+    /// Gets the builder for operations to manage a specific role.
+    /// </summary>
+    /// <param name="roleId">The ID of the role.</param>
+    /// <returns>A builder for operations to manage a specific role.</returns>
+    public RoleRequestBuilder this[long roleId]
+    {
+        get
+        {
+            var urlTemplateParams = new Dictionary<string, object>(this.PathParameters) { { "roleid", roleId } };
+            return new RoleRequestBuilder(urlTemplateParams, this.RequestAdapter);
+        }
+    }
+
+    /// <summary>
     /// Retrieves a list of roles.
     /// </summary>
     /// <remarks>
@@ -60,6 +74,27 @@ public class RolesRequestBuilder
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
         return await this.RequestAdapter.SendAsync<RolesResponse>(requestInfo, cancellationToken);
+    }
+
+    /// <summary>
+    /// Creates a new role.
+    /// </summary>
+    /// <remarks>
+    /// For more information: https://help.getharvest.com/api-v2/roles-api/roles/roles/#create-a-role
+    /// </remarks>
+    /// <param name="body">The role to create.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <param name="cancellationToken">The optional cancellation token.</param>
+    /// <returns>The created role.</returns>
+    /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
+    public async Task<Role> PostAsync(
+        CreateRole body,
+        Action<RolesRequestBuilderPostRequestConfiguration> requestConfiguration = default,
+        CancellationToken cancellationToken = default)
+    {
+        RequestInformation requestInfo = this.ToPostRequestInformation(body, requestConfiguration);
+        return await this.RequestAdapter.SendAsync<Role>(requestInfo, cancellationToken);
     }
 
     /// <summary>
@@ -93,6 +128,40 @@ public class RolesRequestBuilder
     }
 
     /// <summary>
+    /// Builds the request to create a role.
+    /// </summary>
+    /// <param name="body">The request body.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <returns>A request information object.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
+    public RequestInformation ToPostRequestInformation(CreateRole body, Action<RolesRequestBuilderPostRequestConfiguration> requestConfiguration)
+    {
+        _ = body ?? throw new ArgumentNullException(nameof(body));
+        var requestInfo = new RequestInformation
+        {
+            HttpMethod = Method.POST,
+            UrlTemplate = this.UrlTemplate,
+            PathParameters = this.PathParameters
+        };
+
+        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
+        requestInfo.Headers.Add("Accept", "application/json");
+
+        requestInfo.SetJsonContent(body);
+
+        if (requestConfiguration == null)
+        {
+            return requestInfo;
+        }
+
+        var requestConfig = new RolesRequestBuilderPostRequestConfiguration();
+        requestConfiguration.Invoke(requestConfig);
+        requestInfo.AddHeaders(requestConfig.Headers);
+
+        return requestInfo;
+    }
+
+    /// <summary>
     /// Defines the configuration for the request to retrieve a list of roles.
     /// </summary>
     public class RolesRequestBuilderGetRequestConfiguration : RequestConfiguration
@@ -101,6 +170,13 @@ public class RolesRequestBuilder
         /// Gets or sets the query parameters for the request.
         /// </summary>
         public RolesRequestBuilderGetQueryParameters QueryParameters { get; set; } = new();
+    }
+
+    /// <summary>
+    /// Defines the configuration for the request to create a role.
+    /// </summary>
+    public class RolesRequestBuilderPostRequestConfiguration : RequestConfiguration
+    {
     }
 
     /// <summary>
