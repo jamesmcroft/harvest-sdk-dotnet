@@ -6,6 +6,7 @@ using Authentication;
 using Common.Extensions;
 using Common.Requests;
 using Reports;
+using Roles;
 using Users;
 
 /// <summary>
@@ -41,6 +42,11 @@ public partial class HarvestServiceClient
     /// Gets the builder for operations to manage reports.
     /// </summary>
     public ReportsRequestBuilder Reports => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
+    /// Gets the builder for operations to manage roles.
+    /// </summary>
+    public RolesRequestBuilder Roles => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the builder for operations to manage users.
