@@ -3,9 +3,9 @@ namespace Harvest.Users.ProjectAssignments.Models;
 using System.Collections.Generic;
 using Clients.Models;
 using Common.Responses;
+using Harvest.Projects.TaskAssignments.Models;
 using Newtonsoft.Json;
 using Projects.Models;
-using Projects.TaskAssignments.Models;
 
 /// <summary>
 /// Defines the detail for a user's project assignment.

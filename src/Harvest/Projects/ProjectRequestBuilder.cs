@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Common.Requests;
 using Models;
+using UserAssignments;
 
 /// <summary>
 /// Defines the builder for operations to manage a specific project.
@@ -28,7 +29,7 @@ public class ProjectRequestBuilder
         this.PathParameters = new Dictionary<string, object>(pathParameters);
         this.RequestAdapter = requestAdapter;
     }
-    
+
     /// <summary>
     /// Gets the path parameters to use to build the request URL.
     /// </summary>
@@ -43,6 +44,11 @@ public class ProjectRequestBuilder
     /// Gets the URL template to use to build the request URL.
     /// </summary>
     private string UrlTemplate { get; }
+
+    /// <summary>
+    /// Gets the builder for operations to manage the user assignments for the project.
+    /// </summary>
+    public UserAssignmentsRequestBuilder UserAssignments => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Retrieves a project.

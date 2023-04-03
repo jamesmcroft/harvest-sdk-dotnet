@@ -1,4 +1,4 @@
-namespace Harvest.UserAssignments.Models;
+namespace Harvest.Projects.UserAssignments.Models;
 
 using Common.Responses;
 using Newtonsoft.Json;

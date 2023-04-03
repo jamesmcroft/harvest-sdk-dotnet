@@ -1,4 +1,4 @@
-namespace Harvest.UserAssignments;
+namespace Harvest.Projects.UserAssignments;
 
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,8 @@ public class UserAssignmentsRequestBuilder
         _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
         _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
 
-        this.UrlTemplate = "{+baseurl}/user_assignments{?user_id,is_active,updated_since,page,per_page}";
+        this.UrlTemplate =
+            "{+baseurl}/projects/{+projectid}/user_assignments{?user_id,is_active,updated_since,page,per_page}";
         this.PathParameters = new Dictionary<string, object>(pathParameters);
         this.RequestAdapter = requestAdapter;
     }
@@ -49,7 +50,7 @@ public class UserAssignmentsRequestBuilder
     /// Retrieves a list of all project user assignments.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/user-assignments/#list-all-user-assignments
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/user-assignments/#list-all-user-assignments-for-a-specific-project
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

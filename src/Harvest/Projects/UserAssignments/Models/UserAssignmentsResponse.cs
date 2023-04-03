@@ -1,4 +1,4 @@
-namespace Harvest.UserAssignments.Models;
+namespace Harvest.Projects.UserAssignments.Models;
 
 using System.Collections.Generic;
 using Common.Responses;

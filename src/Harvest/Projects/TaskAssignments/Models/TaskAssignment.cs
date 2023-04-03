@@ -3,7 +3,6 @@ namespace Harvest.Projects.TaskAssignments.Models;
 using Common.Responses;
 using Newtonsoft.Json;
 using Projects.Models;
-using Reports.ProjectBudget.Models;
 using Tasks.Models;
 
 /// <summary>
