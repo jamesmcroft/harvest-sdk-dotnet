@@ -45,6 +45,20 @@ public class ProjectsRequestBuilder
     private string UrlTemplate { get; }
 
     /// <summary>
+    /// Gets the builder for operations to manage a specific project.
+    /// </summary>
+    /// <param name="projectId">The ID of the user.</param>
+    /// <returns>A builder for operations to manage a specific project.</returns>
+    public ProjectRequestBuilder this[long projectId]
+    {
+        get
+        {
+            var urlTemplateParams = new Dictionary<string, object>(this.PathParameters) { { "projectid", projectId } };
+            return new ProjectRequestBuilder(urlTemplateParams, this.RequestAdapter);
+        }
+    }
+
+    /// <summary>
     /// Retrieves a list of projects.
     /// </summary>
     /// <remarks>

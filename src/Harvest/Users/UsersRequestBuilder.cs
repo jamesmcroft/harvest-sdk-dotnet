@@ -68,7 +68,9 @@ public class UsersRequestBuilder
     /// <param name="cancellationToken">The optional cancellation token.</param>
     /// <returns>A collection of users.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
-    public async Task<UsersResponse> GetAsync(Action<UsersRequestBuilderGetRequestConfiguration> requestConfiguration = default, CancellationToken cancellationToken = default)
+    public async Task<UsersResponse> GetAsync(
+        Action<UsersRequestBuilderGetRequestConfiguration> requestConfiguration = default,
+        CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
         return await this.RequestAdapter.SendAsync<UsersResponse>(requestInfo, cancellationToken);
@@ -100,13 +102,12 @@ public class UsersRequestBuilder
     /// </summary>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
-    public RequestInformation ToGetRequestInformation(Action<UsersRequestBuilderGetRequestConfiguration> requestConfiguration = default)
+    public RequestInformation ToGetRequestInformation(
+        Action<UsersRequestBuilderGetRequestConfiguration> requestConfiguration = default)
     {
         var requestInfo = new RequestInformation
         {
-            HttpMethod = Method.GET,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters,
+            HttpMethod = Method.GET, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
         };
 
         requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
@@ -132,14 +133,13 @@ public class UsersRequestBuilder
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
-    public RequestInformation ToPostRequestInformation(CreateUser body, Action<UsersRequestBuilderPostRequestConfiguration> requestConfiguration)
+    public RequestInformation ToPostRequestInformation(CreateUser body,
+        Action<UsersRequestBuilderPostRequestConfiguration> requestConfiguration)
     {
         _ = body ?? throw new ArgumentNullException(nameof(body));
         var requestInfo = new RequestInformation
         {
-            HttpMethod = Method.POST,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters
+            HttpMethod = Method.POST, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters
         };
 
         requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
