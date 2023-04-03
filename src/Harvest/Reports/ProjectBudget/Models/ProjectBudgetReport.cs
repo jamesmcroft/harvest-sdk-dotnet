@@ -2,6 +2,7 @@ namespace Harvest.Reports.ProjectBudget.Models;
 
 using Harvest.Common.Serialization;
 using Newtonsoft.Json;
+using Projects.Models;
 
 /// <summary>
 /// Defines the detail of a project budget report.

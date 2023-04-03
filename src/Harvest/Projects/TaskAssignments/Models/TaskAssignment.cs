@@ -3,6 +3,7 @@ namespace Harvest.Projects.TaskAssignments.Models;
 using Common.Responses;
 using Newtonsoft.Json;
 using Projects.Models;
+using Reports.ProjectBudget.Models;
 using Tasks.Models;
 
 /// <summary>
@@ -35,13 +36,13 @@ public class TaskAssignment : Entry
     public bool? Billable { get; set; }
 
     /// <summary>
-    /// Gets or sets the rate used when the project's BillBy is Tasks.
+    /// Gets or sets the rate used when the project's <see cref="BillBy"/> is <see cref="BillBy.Tasks"/>.
     /// </summary>
     [JsonProperty("hourly_rate")]
     public decimal? HourlyRate { get; set; }
 
     /// <summary>
-    /// Gets or sets the budget used when the project's BudgetBy is Task or TaskFees.
+    /// Gets or sets the budget used when the project's <see cref="BudgetBy"/> is <see cref="BudgetBy.Task"/> or <see cref="BudgetBy.TaskFees"/>.
     /// </summary>
     [JsonProperty("budget")]
     public decimal? Budget { get; set; }

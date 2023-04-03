@@ -13,4 +13,10 @@ public class ClientSummary : Entry
     /// </summary>
     [JsonProperty("name")]
     public string Name { get; set; }
+
+    /// <summary>
+    /// Gets or sets the currency of the client.
+    /// </summary>
+    [JsonProperty("currency")]
+    public string Currency { get; set; }
 }

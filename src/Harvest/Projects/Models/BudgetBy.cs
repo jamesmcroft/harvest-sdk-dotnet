@@ -1,12 +1,17 @@
-namespace Harvest.Reports.ProjectBudget.Models;
+namespace Harvest.Projects.Models;
 
-using Common.Serialization;
+using Harvest.Common.Serialization;
 
 /// <summary>
-/// Defines the budget by options for a project budget report.
+/// Defines the budget by options for a project.
 /// </summary>
 public enum BudgetBy
 {
+    /// <summary>
+    /// The budget is not set.
+    /// </summary>
+    [EnumStringValue("none")] None,
+
     /// <summary>
     /// The budget is by hours per project.
     /// </summary>
@@ -30,10 +35,5 @@ public enum BudgetBy
     /// <summary>
     /// The budget is by hours per person.
     /// </summary>
-    [EnumStringValue("person")] Person,
-
-    /// <summary>
-    /// The budget is not set.
-    /// </summary>
-    [EnumStringValue("none")] None
+    [EnumStringValue("person")] Person
 }
