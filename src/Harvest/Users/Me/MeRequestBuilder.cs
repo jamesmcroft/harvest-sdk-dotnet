@@ -1,32 +1,40 @@
-namespace Harvest.Users.ProjectAssignments;
-
-using System.Collections.Generic;
+namespace Harvest.Users.Me;
 
 using System;
-using Common.Requests;
+using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
+using Common.Requests;
+
+/* Unmerged change from project 'Harvest (netstandard2.0)'
+Before:
+using Models;
+After:
+using Harvest;
+using Harvest.Users;
+using Harvest.Users.Me;
+using Models;
+*/
 using Models;
 
 /// <summary>
-/// Defines the builder for operations to manage the project assignments for a user.
+/// Defines the builder for operations to manage the current authenticated user.
 /// </summary>
-public class ProjectAssignmentsRequestBuilder
+public class MeRequestBuilder
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="ProjectAssignmentsRequestBuilder"/> class with the specified path parameters and request adapter.
+    /// Initializes a new instance of the <see cref="MeRequestBuilder"/> class with the specified path parameters and request adapter.
     /// </summary>
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public ProjectAssignmentsRequestBuilder(Dictionary<string, object> pathParameters,
-        HarvestRequestAdapter requestAdapter)
+    public MeRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
     {
         _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
         _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
 
-        this.UrlTemplate = "{+baseurl}/users/{+userid}/project_assignments{?updated_since,page,per_page}";
+        this.UrlTemplate = "{+baseurl}/users/me";
         this.PathParameters = new Dictionary<string, object>(pathParameters);
         this.RequestAdapter = requestAdapter;
     }
@@ -47,34 +55,41 @@ public class ProjectAssignmentsRequestBuilder
     private string UrlTemplate { get; }
 
     /// <summary>
-    /// Retrieves a list of project assignments for the user.
+    /// Gets the builder for operations to manage the project assignments for the current authenticated user.
+    /// </summary>
+    public ProjectAssignmentsRequestBuilder ProjectAssignments => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
+    /// Retrieves the current authenticated user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/project-assignments/#list-active-project-assignments
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#retrieve-the-currently-authenticated-user
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
-    /// <returns>A collection of project assignments.</returns>
+    /// <returns>The user details.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
-    public async Task<ProjectAssignmentsResponse> GetAsync(
-        Action<ProjectAssignmentsRequestBuilderGetRequestConfiguration> requestConfiguration = default,
+    public async Task<User> GetAsync(
+        Action<UserRequestBuilderGetRequestConfiguration> requestConfiguration = default,
         CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
-        return await this.RequestAdapter.SendAsync<ProjectAssignmentsResponse>(requestInfo, cancellationToken);
+        return await this.RequestAdapter.SendAsync<User>(requestInfo, cancellationToken);
     }
 
     /// <summary>
-    /// Builds the request to retrieve a list of project assignments for the user.
+    /// Builds the request to retrieve the current authenticated user.
     /// </summary>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToGetRequestInformation(
-        Action<ProjectAssignmentsRequestBuilderGetRequestConfiguration> requestConfiguration)
+        Action<UserRequestBuilderGetRequestConfiguration> requestConfiguration)
     {
         var requestInfo = new RequestInformation
         {
-            HttpMethod = Method.GET, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
+            HttpMethod = Method.GET,
+            UrlTemplate = this.UrlTemplate,
+            PathParameters = this.PathParameters,
         };
 
         requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
@@ -85,34 +100,16 @@ public class ProjectAssignmentsRequestBuilder
             return requestInfo;
         }
 
-        var requestConfig = new ProjectAssignmentsRequestBuilderGetRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+        var requestConfig = new UserRequestBuilderGetRequestConfiguration();
+        requestConfiguration(requestConfig);
         requestInfo.AddHeaders(requestConfig.Headers);
-
         return requestInfo;
     }
 
     /// <summary>
-    /// Defines the configuration for the request to retrieve a list of project assignments for the user.
+    /// Defines the configuration for the request to retrieve the current authenticated user.
     /// </summary>
-    public class ProjectAssignmentsRequestBuilderGetRequestConfiguration : RequestConfiguration
+    public class UserRequestBuilderGetRequestConfiguration : RequestConfiguration
     {
-        /// <summary>
-        /// Gets or sets the query parameters for the request.
-        /// </summary>
-        public ProjectAssignmentsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new();
-    }
-
-    /// <summary>
-    /// Defines the query parameters for the request to retrieve a list of project assignments for the user.
-    /// </summary>
-    public class ProjectAssignmentsRequestBuilderGetQueryParameters : PaginatedQueryParameters
-    {
-        /// <summary>
-        /// Gets or sets a date/time that will only return project assignments that have been updated since.
-        /// </summary>
-        [QueryParameter("updated_since")]
-        public DateTime? UpdatedSince { get; set; }
     }
 }

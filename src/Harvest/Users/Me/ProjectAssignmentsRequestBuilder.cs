@@ -1,4 +1,4 @@
-namespace Harvest.Users.ProjectAssignments;
+namespace Harvest.Users.Me;
 
 using System.Collections.Generic;
 
@@ -7,10 +7,10 @@ using Common.Requests;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Threading;
-using Models;
+using ProjectAssignments.Models;
 
 /// <summary>
-/// Defines the builder for operations to manage the project assignments for a user.
+/// Defines the builder for operations to manage the project assignments for the current authenticated user.
 /// </summary>
 public class ProjectAssignmentsRequestBuilder
 {
@@ -26,7 +26,7 @@ public class ProjectAssignmentsRequestBuilder
         _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
         _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
 
-        this.UrlTemplate = "{+baseurl}/users/{+userid}/project_assignments{?updated_since,page,per_page}";
+        this.UrlTemplate = "{+baseurl}/users/me/project_assignments{?page,per_page}";
         this.PathParameters = new Dictionary<string, object>(pathParameters);
         this.RequestAdapter = requestAdapter;
     }
@@ -47,10 +47,10 @@ public class ProjectAssignmentsRequestBuilder
     private string UrlTemplate { get; }
 
     /// <summary>
-    /// Retrieves a list of project assignments for the user.
+    /// Retrieves a list of project assignments for the current authenticated user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/project-assignments/#list-active-project-assignments
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/project-assignments/#list-active-project-assignments-for-the-currently-authenticated-user
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -65,7 +65,7 @@ public class ProjectAssignmentsRequestBuilder
     }
 
     /// <summary>
-    /// Builds the request to retrieve a list of project assignments for the user.
+    /// Builds the request to retrieve a list of project assignments for the current authenticated user.
     /// </summary>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
@@ -94,7 +94,7 @@ public class ProjectAssignmentsRequestBuilder
     }
 
     /// <summary>
-    /// Defines the configuration for the request to retrieve a list of project assignments for the user.
+    /// Defines the configuration for the request to retrieve a list of project assignments for the current authenticated user.
     /// </summary>
     public class ProjectAssignmentsRequestBuilderGetRequestConfiguration : RequestConfiguration
     {
@@ -105,14 +105,9 @@ public class ProjectAssignmentsRequestBuilder
     }
 
     /// <summary>
-    /// Defines the query parameters for the request to retrieve a list of project assignments for the user.
+    /// Defines the query parameters for the request to retrieve a list of project assignments for the current authenticated user.
     /// </summary>
     public class ProjectAssignmentsRequestBuilderGetQueryParameters : PaginatedQueryParameters
     {
-        /// <summary>
-        /// Gets or sets a date/time that will only return project assignments that have been updated since.
-        /// </summary>
-        [QueryParameter("updated_since")]
-        public DateTime? UpdatedSince { get; set; }
     }
 }
