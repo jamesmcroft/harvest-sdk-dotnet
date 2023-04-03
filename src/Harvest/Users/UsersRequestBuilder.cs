@@ -45,6 +45,11 @@ public class UsersRequestBuilder
     private string UrlTemplate { get; }
 
     /// <summary>
+    /// Gets the builder for operations to manage the current user.
+    /// </summary>
+    public MeRequestBuilder Me => new MeRequestBuilder(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
     /// Gets the builder for operations to manage a specific user.
     /// </summary>
     /// <param name="userId">The ID of the user.</param>
