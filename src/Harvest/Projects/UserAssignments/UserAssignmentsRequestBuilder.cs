@@ -65,6 +65,27 @@ public class UserAssignmentsRequestBuilder
     }
 
     /// <summary>
+    /// Creates a new project user assignment.
+    /// </summary>
+    /// <remarks>
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/user-assignments/#create-a-user-assignment
+    /// </remarks>
+    /// <param name="body">The user assignment to create.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <param name="cancellationToken">The optional cancellation token.</param>
+    /// <returns>The created user assignment.</returns>
+    /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
+    public async Task<UserAssignment> PostAsync(
+        CreateUserAssignment body,
+        Action<UserAssignmentsRequestBuilderPostRequestConfiguration> requestConfiguration = default,
+        CancellationToken cancellationToken = default)
+    {
+        RequestInformation requestInfo = this.ToPostRequestInformation(body, requestConfiguration);
+        return await this.RequestAdapter.SendAsync<UserAssignment>(requestInfo, cancellationToken);
+    }
+
+    /// <summary>
     /// Builds the request to retrieve a list of all project user assignments.
     /// </summary>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -74,7 +95,9 @@ public class UserAssignmentsRequestBuilder
     {
         var requestInfo = new RequestInformation
         {
-            HttpMethod = Method.GET, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
+            HttpMethod = Method.GET,
+            UrlTemplate = this.UrlTemplate,
+            PathParameters = this.PathParameters,
         };
 
         requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
@@ -94,6 +117,41 @@ public class UserAssignmentsRequestBuilder
     }
 
     /// <summary>
+    /// Builds the request to create a new project user assignment.
+    /// </summary>
+    /// <param name="body">The request body.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <returns>A request information object.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
+    public RequestInformation ToPostRequestInformation(CreateUserAssignment body,
+        Action<UserAssignmentsRequestBuilderPostRequestConfiguration> requestConfiguration)
+    {
+        _ = body ?? throw new ArgumentNullException(nameof(body));
+        var requestInfo = new RequestInformation
+        {
+            HttpMethod = Method.POST,
+            UrlTemplate = this.UrlTemplate,
+            PathParameters = this.PathParameters
+        };
+
+        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
+        requestInfo.Headers.Add("Accept", "application/json");
+
+        requestInfo.SetJsonContent(body);
+
+        if (requestConfiguration == null)
+        {
+            return requestInfo;
+        }
+
+        var requestConfig = new UserAssignmentsRequestBuilderPostRequestConfiguration();
+        requestConfiguration.Invoke(requestConfig);
+        requestInfo.AddHeaders(requestConfig.Headers);
+
+        return requestInfo;
+    }
+
+    /// <summary>
     /// Defines the configuration for the request to retrieve a list of all project user assignments.
     /// </summary>
     public class UserAssignmentsRequestBuilderGetRequestConfiguration : RequestConfiguration
@@ -102,6 +160,13 @@ public class UserAssignmentsRequestBuilder
         /// Gets or sets the query parameters for the request.
         /// </summary>
         public UserAssignmentsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new();
+    }
+
+    /// <summary>
+    /// Defines the configuration for the request to create a new project user assignment.
+    /// </summary>
+    public class UserAssignmentsRequestBuilderPostRequestConfiguration : RequestConfiguration
+    {
     }
 
     /// <summary>
