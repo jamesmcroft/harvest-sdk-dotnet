@@ -1,4 +1,4 @@
-namespace Harvest.Projects;
+namespace Harvest.Projects.TaskAssignments;
 
 using System;
 using System.Collections.Generic;
@@ -7,26 +7,25 @@ using System.Threading;
 using System.Threading.Tasks;
 using Common.Requests;
 using Models;
-using TaskAssignments;
-using UserAssignments;
 
 /// <summary>
-/// Defines the builder for operations to manage a specific project.
+/// Defines the builder for operations to manage a specific project task assignment.
 /// </summary>
-public class ProjectRequestBuilder
+public class TaskAssignmentRequestBuilder
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="ProjectRequestBuilder"/> class with the specified path parameters and request adapter.
+    /// Initializes a new instance of the <see cref="TaskAssignmentRequestBuilder"/> class with the specified path parameters and request adapter.
     /// </summary>
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public ProjectRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
+    public TaskAssignmentRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
     {
         _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
         _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
 
-        this.UrlTemplate = "{+baseurl}/projects/{+projectid}";
+        this.UrlTemplate =
+            "{+baseurl}/projects/{+projectid}/task_assignments/{+taskassignmentid}";
         this.PathParameters = new Dictionary<string, object>(pathParameters);
         this.RequestAdapter = requestAdapter;
     }
@@ -47,67 +46,57 @@ public class ProjectRequestBuilder
     private string UrlTemplate { get; }
 
     /// <summary>
-    /// Gets the builder for operations to manage the user assignments for the project.
-    /// </summary>
-    public UserAssignmentsRequestBuilder UserAssignments => new(this.PathParameters, this.RequestAdapter);
-
-    /// <summary>
-    /// Gets the builder for operations to manage the task assignments for the project.
-    /// </summary>
-    public TaskAssignmentsRequestBuilder TaskAssignments => new(this.PathParameters, this.RequestAdapter);
-
-    /// <summary>
-    /// Retrieves a project.
+    /// Retrieves a task assignment.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#retrieve-a-project
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#retrieve-a-task-assignment
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
-    /// <returns>The project details.</returns>
+    /// <returns>The task assignment details.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
-    public async Task<Project> GetAsync(
-        Action<ProjectRequestBuilderGetRequestConfiguration> requestConfiguration = default,
+    public async Task<TaskAssignment> GetAsync(
+        Action<TaskAssignmentRequestBuilderGetRequestConfiguration> requestConfiguration = default,
         CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
-        return await this.RequestAdapter.SendAsync<Project>(requestInfo, cancellationToken);
+        return await this.RequestAdapter.SendAsync<TaskAssignment>(requestInfo, cancellationToken);
     }
 
     /// <summary>
-    /// Updates a project.
+    /// Updates a task assignment.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#update-a-project
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#update-a-task-assignment
     /// </remarks>
-    /// <param name="body">The project details to update. Any parameters not provided will be left unchanged.</param>
+    /// <param name="body">The task assignment details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
-    /// <returns>The updated project details.</returns>
+    /// <returns>The updated task assignment details.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
-    public async Task<Project> PatchAsync(
-        UpdateProject body,
-        Action<ProjectRequestBuilderPatchRequestConfiguration> requestConfiguration = default,
+    public async Task<TaskAssignment> PatchAsync(
+        UpdateTaskAssignment body,
+        Action<TaskAssignmentRequestBuilderPatchRequestConfiguration> requestConfiguration = default,
         CancellationToken cancellationToken = default)
     {
         _ = body ?? throw new ArgumentNullException(nameof(body));
         RequestInformation requestInfo = this.ToPatchRequestInformation(body, requestConfiguration);
-        return await this.RequestAdapter.SendAsync<Project>(requestInfo, cancellationToken);
+        return await this.RequestAdapter.SendAsync<TaskAssignment>(requestInfo, cancellationToken);
     }
 
     /// <summary>
-    /// Deletes a project.
+    /// Deletes a task assignment.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#delete-a-project
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#delete-a-task-assignment
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
     /// <returns>A task that represents the asynchronous operation.</returns>
     /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
     public async Task DeleteAsync(
-        Action<ProjectRequestBuilderDeleteRequestConfiguration> requestConfiguration = default,
+        Action<TaskAssignmentRequestBuilderDeleteRequestConfiguration> requestConfiguration = default,
         CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToDeleteRequestInformation(requestConfiguration);
@@ -115,18 +104,16 @@ public class ProjectRequestBuilder
     }
 
     /// <summary>
-    /// Builds the request to retrieve a project.
+    /// Builds the request to retrieve a task assignment.
     /// </summary>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToGetRequestInformation(
-        Action<ProjectRequestBuilderGetRequestConfiguration> requestConfiguration)
+        Action<TaskAssignmentRequestBuilderGetRequestConfiguration> requestConfiguration)
     {
         var requestInfo = new RequestInformation
         {
-            HttpMethod = Method.GET,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters,
+            HttpMethod = Method.GET, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
         };
 
         requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
@@ -137,27 +124,25 @@ public class ProjectRequestBuilder
             return requestInfo;
         }
 
-        var requestConfig = new ProjectRequestBuilderGetRequestConfiguration();
+        var requestConfig = new TaskAssignmentRequestBuilderGetRequestConfiguration();
         requestConfiguration(requestConfig);
         requestInfo.AddHeaders(requestConfig.Headers);
         return requestInfo;
     }
 
     /// <summary>
-    /// Builds the request to update a project.
+    /// Builds the request to update a task assignment.
     /// </summary>
     /// <param name="body">The request body.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToPatchRequestInformation(
-        UpdateProject body,
-        Action<ProjectRequestBuilderPatchRequestConfiguration> requestConfiguration)
+        UpdateTaskAssignment body,
+        Action<TaskAssignmentRequestBuilderPatchRequestConfiguration> requestConfiguration)
     {
         var requestInfo = new RequestInformation
         {
-            HttpMethod = Method.PATCH,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters,
+            HttpMethod = Method.PATCH, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
         };
 
         requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
@@ -170,7 +155,7 @@ public class ProjectRequestBuilder
             return requestInfo;
         }
 
-        var requestConfig = new ProjectRequestBuilderPatchRequestConfiguration();
+        var requestConfig = new TaskAssignmentRequestBuilderPatchRequestConfiguration();
         requestConfiguration.Invoke(requestConfig);
         requestInfo.AddHeaders(requestConfig.Headers);
 
@@ -178,18 +163,16 @@ public class ProjectRequestBuilder
     }
 
     /// <summary>
-    /// Builds the request to delete a project.
+    /// Builds the request to delete a task assignment.
     /// </summary>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToDeleteRequestInformation(
-        Action<ProjectRequestBuilderDeleteRequestConfiguration> requestConfiguration)
+        Action<TaskAssignmentRequestBuilderDeleteRequestConfiguration> requestConfiguration)
     {
         var requestInfo = new RequestInformation
         {
-            HttpMethod = Method.DELETE,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters,
+            HttpMethod = Method.DELETE, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
         };
 
         requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
@@ -199,7 +182,7 @@ public class ProjectRequestBuilder
             return requestInfo;
         }
 
-        var requestConfig = new ProjectRequestBuilderDeleteRequestConfiguration();
+        var requestConfig = new TaskAssignmentRequestBuilderDeleteRequestConfiguration();
         requestConfiguration.Invoke(requestConfig);
         requestInfo.AddHeaders(requestConfig.Headers);
 
@@ -207,23 +190,23 @@ public class ProjectRequestBuilder
     }
 
     /// <summary>
-    /// Defines the configuration for the request to get a project.
+    /// Defines the configuration for the request to get a task assignment.
     /// </summary>
-    public class ProjectRequestBuilderGetRequestConfiguration : RequestConfiguration
+    public class TaskAssignmentRequestBuilderGetRequestConfiguration : RequestConfiguration
     {
     }
 
     /// <summary>
-    /// Defines the configuration for the request to update a project.
+    /// Defines the configuration for the request to update a task assignment.
     /// </summary>
-    public class ProjectRequestBuilderPatchRequestConfiguration : RequestConfiguration
+    public class TaskAssignmentRequestBuilderPatchRequestConfiguration : RequestConfiguration
     {
     }
 
     /// <summary>
-    /// Define the configuration for the request to delete a project.
+    /// Define the configuration for the request to delete a task assignment.
     /// </summary>
-    public class ProjectRequestBuilderDeleteRequestConfiguration : RequestConfiguration
+    public class TaskAssignmentRequestBuilderDeleteRequestConfiguration : RequestConfiguration
     {
     }
 }
