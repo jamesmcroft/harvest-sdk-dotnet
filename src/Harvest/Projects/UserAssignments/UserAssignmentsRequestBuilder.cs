@@ -47,6 +47,21 @@ public class UserAssignmentsRequestBuilder
     private string UrlTemplate { get; }
 
     /// <summary>
+    /// Gets the builder for operations to manage a specific user assignment.
+    /// </summary>
+    /// <param name="userAssignmentId">The ID of the user assignment.</param>
+    /// <returns>A builder for operations to manage a specific user assignment.</returns>
+    public UserAssignmentRequestBuilder this[long userAssignmentId]
+    {
+        get
+        {
+            var urlTemplateParams =
+                new Dictionary<string, object>(this.PathParameters) { { "userassignmentid", userAssignmentId } };
+            return new UserAssignmentRequestBuilder(urlTemplateParams, this.RequestAdapter);
+        }
+    }
+
+    /// <summary>
     /// Retrieves a list of all project user assignments.
     /// </summary>
     /// <remarks>
