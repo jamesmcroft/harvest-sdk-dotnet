@@ -1,6 +1,8 @@
 namespace Harvest.TimeEntries.Models;
 
 using System;
+using System.ComponentModel;
+using Common.Serialization;
 using Harvest.Clients.Models;
 using Harvest.Common.Responses;
 using Harvest.Invoices.Models;
@@ -128,13 +130,15 @@ public class TimeEntry : Entry
     /// Gets or sets the time the time entry was started if tracking by start/end times.
     /// </summary>
     [JsonProperty("started_time")]
-    public string StartedTime { get; set; }
+    [JsonConverter(typeof(HarvestTimeValueConverter))]
+    public TimeSpan? StartedTime { get; set; }
 
     /// <summary>
     /// Gets or sets the time the time entry was ended if tracking by start/end times.
     /// </summary>
     [JsonProperty("ended_time")]
-    public string EndedTime { get; set; }
+    [JsonConverter(typeof(HarvestTimeValueConverter))]
+    public TimeSpan? EndedTime { get; set; }
 
     /// <summary>
     /// Gets or sets a value indicating whether the time entry is currently running.

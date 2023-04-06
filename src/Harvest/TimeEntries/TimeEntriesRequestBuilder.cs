@@ -24,7 +24,8 @@ public class TimeEntriesRequestBuilder
         _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
         _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
 
-        this.UrlTemplate = "{+baseurl}/time_entries{?user_id,client_id,project_id,task_id,external_reference_id,is_billed,is_running,updated_since,from,to,page,per_page}";
+        this.UrlTemplate =
+            "{+baseurl}/time_entries{?user_id,client_id,project_id,task_id,external_reference_id,is_billed,is_running,updated_since,from,to,page,per_page}";
         this.PathParameters = new Dictionary<string, object>(pathParameters);
         this.RequestAdapter = requestAdapter;
     }
@@ -63,6 +64,27 @@ public class TimeEntriesRequestBuilder
     }
 
     /// <summary>
+    /// Creates a new time entry.
+    /// </summary>
+    /// <remarks>
+    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries
+    /// </remarks>
+    /// <param name="body">The time entry to create.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <param name="cancellationToken">The optional cancellation token.</param>
+    /// <returns>The created time entry.</returns>
+    /// <exception cref="HttpRequestException">Thrown when the request failed due to an underlying issue such as network connectivity, DNS failure, server certificate validation or timeout.</exception>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
+    public async Task<TimeEntry> PostAsync(
+        CreateTimeEntry body,
+        Action<TimeEntriesRequestBuilderPostRequestConfiguration> requestConfiguration = default,
+        CancellationToken cancellationToken = default)
+    {
+        RequestInformation requestInfo = this.ToPostRequestInformation(body, requestConfiguration);
+        return await this.RequestAdapter.SendAsync<TimeEntry>(requestInfo, cancellationToken);
+    }
+
+    /// <summary>
     /// Builds the request to retrieve a list of time entries.
     /// </summary>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -94,6 +116,41 @@ public class TimeEntriesRequestBuilder
     }
 
     /// <summary>
+    /// Builds the request to create a time entry.
+    /// </summary>
+    /// <param name="body">The request body.</param>
+    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
+    /// <returns>A request information object.</returns>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
+    public RequestInformation ToPostRequestInformation(CreateTimeEntry body,
+        Action<TimeEntriesRequestBuilderPostRequestConfiguration> requestConfiguration)
+    {
+        _ = body ?? throw new ArgumentNullException(nameof(body));
+        var requestInfo = new RequestInformation
+        {
+            HttpMethod = Method.POST,
+            UrlTemplate = this.UrlTemplate,
+            PathParameters = this.PathParameters
+        };
+
+        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
+        requestInfo.Headers.Add("Accept", "application/json");
+
+        requestInfo.SetJsonContent(body);
+
+        if (requestConfiguration == null)
+        {
+            return requestInfo;
+        }
+
+        var requestConfig = new TimeEntriesRequestBuilderPostRequestConfiguration();
+        requestConfiguration.Invoke(requestConfig);
+        requestInfo.AddHeaders(requestConfig.Headers);
+
+        return requestInfo;
+    }
+
+    /// <summary>
     /// Defines the configuration for the request to retrieve a list of time entries.
     /// </summary>
     public class TimeEntriesRequestBuilderGetRequestConfiguration : RequestConfiguration
@@ -102,6 +159,13 @@ public class TimeEntriesRequestBuilder
         /// Gets or sets the query parameters for the request.
         /// </summary>
         public TimeEntriesRequestBuilderGetQueryParameters QueryParameters { get; set; } = new();
+    }
+
+    /// <summary>
+    /// Defines the configuration for the request to create a time entry.
+    /// </summary>
+    public class TimeEntriesRequestBuilderPostRequestConfiguration : RequestConfiguration
+    {
     }
 
     /// <summary>
