@@ -46,6 +46,21 @@ public class TimeEntriesRequestBuilder
     private string UrlTemplate { get; }
 
     /// <summary>
+    /// Gets the builder for operations to manage a specific time entry.
+    /// </summary>
+    /// <param name="timeEntryId">The ID of the time entry.</param>
+    /// <returns>A builder for operations to manage a specific time entry.</returns>
+    public TimeEntryRequestBuilder this[long timeEntryId]
+    {
+        get
+        {
+            var urlTemplateParams =
+                new Dictionary<string, object>(this.PathParameters) { { "timeentryid", timeEntryId } };
+            return new TimeEntryRequestBuilder(urlTemplateParams, this.RequestAdapter);
+        }
+    }
+
+    /// <summary>
     /// Retrieves a list of time entries.
     /// </summary>
     /// <remarks>
