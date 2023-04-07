@@ -6,6 +6,7 @@ using Authentication;
 using Clients;
 using Common.Extensions;
 using Common.Requests;
+using Company;
 using Contacts;
 using Projects;
 using Reports;
@@ -48,6 +49,11 @@ public partial class HarvestServiceClient
     /// Gets the builder for operations to manage clients.
     /// </summary>
     public ClientsRequestBuilder Clients => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
+    /// Gets the builder for operations to manage the company.
+    /// </summary>
+    public CompanyRequestBuilder Company => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the builder for operations to manage client contacts.
