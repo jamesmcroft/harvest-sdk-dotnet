@@ -5,8 +5,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using Extensions;
 using Newtonsoft.Json;
+using Serialization;
 using Tavis.UriTemplates;
 
 /// <summary>
@@ -163,7 +165,9 @@ public class RequestInformation
     public void SetJsonContent<T>(T item)
     {
         this.Headers.Add(ContentTypeHeader, "application/json");
-        this.Content = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(item, this.JsonSerializerSettings)));
+        this.Content =
+            new MemoryStream(
+                System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(item, this.JsonSerializerSettings)));
     }
 
     private static object GetSanitizedValue(object value)
@@ -173,7 +177,18 @@ public class RequestInformation
             bool boolean => boolean.ToString().ToLower(),
             DateTimeOffset dateTimeOffset => dateTimeOffset.ToString("O"),
             DateTime dateTime => dateTime.ToString("O"),
+            Enum enumValue => GetEnumStringValue(enumValue),
             _ => value
         };
+    }
+
+    private static object GetEnumStringValue(Enum enumValue)
+    {
+        Type enumType = enumValue.GetType();
+        string enumStringValue = enumValue.ToString();
+        MemberInfo enumStringMember = enumType.GetMember(enumStringValue).FirstOrDefault();
+        EnumStringValueAttribute enumStringAttribute = enumStringMember?.GetCustomAttributes(false)
+            .OfType<EnumStringValueAttribute>().FirstOrDefault();
+        return enumStringAttribute?.Value ?? enumStringValue;
     }
 }

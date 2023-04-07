@@ -36,7 +36,7 @@ public class UpdateExpense
     /// Gets or sets the quantity of units used to calculate the total cost of the expense.
     /// </summary>
     [JsonProperty("units")]
-    public int? Units { get; set; }
+    public decimal? Units { get; set; }
 
     /// <summary>
     /// Gets or sets the total cost of the expense.
