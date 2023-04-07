@@ -11,7 +11,7 @@ using Models;
 /// <summary>
 /// Defines the builder for operations to manage projects.
 /// </summary>
-public class ProjectsRequestBuilder
+public class ProjectsRequestBuilder : RequestBuilder
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="ProjectsRequestBuilder"/> class with the specified path parameters and request adapter.
@@ -20,29 +20,9 @@ public class ProjectsRequestBuilder
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
     public ProjectsRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
+        : base("{+baseurl}/projects{?is_active,client_id,updated_since,page,per_page}", pathParameters, requestAdapter)
     {
-        _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-        _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-
-        this.UrlTemplate = "{+baseurl}/projects{?is_active,client_id,updated_since,page,per_page}";
-        this.PathParameters = new Dictionary<string, object>(pathParameters);
-        this.RequestAdapter = requestAdapter;
     }
-
-    /// <summary>
-    /// Gets the path parameters to use to build the request URL.
-    /// </summary>
-    private Dictionary<string, object> PathParameters { get; }
-
-    /// <summary>
-    /// Gets the request adapter to use to execute the requests.
-    /// </summary>
-    private HarvestRequestAdapter RequestAdapter { get; }
-
-    /// <summary>
-    /// Gets the URL template to use to build the request URL.
-    /// </summary>
-    private string UrlTemplate { get; }
 
     /// <summary>
     /// Gets the builder for operations to manage a specific project.
@@ -98,80 +78,11 @@ public class ProjectsRequestBuilder
     }
 
     /// <summary>
-    /// Builds the request to retrieve a list of projects.
-    /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToGetRequestInformation(
-        Action<ProjectsRequestBuilderGetRequestConfiguration> requestConfiguration = default)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.GET,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new ProjectsRequestBuilderGetRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
-    }
-
-    /// <summary>
-    /// Builds the request to create a project.
-    /// </summary>
-    /// <param name="body">The request body.</param>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
-    public RequestInformation ToPostRequestInformation(CreateProject body,
-        Action<ProjectsRequestBuilderPostRequestConfiguration> requestConfiguration)
-    {
-        _ = body ?? throw new ArgumentNullException(nameof(body));
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.POST,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        requestInfo.SetJsonContent(body);
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new ProjectsRequestBuilderPostRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
-    }
-
-    /// <summary>
     /// Defines the configuration for the request to retrieve a list of projects.
     /// </summary>
-    public class ProjectsRequestBuilderGetRequestConfiguration : RequestConfiguration
+    public class ProjectsRequestBuilderGetRequestConfiguration
+        : QueryableRequestConfiguration<ProjectsRequestBuilderGetQueryParameters>
     {
-        /// <summary>
-        /// Gets or sets the query parameters for the request.
-        /// </summary>
-        public ProjectsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new();
     }
 
     /// <summary>

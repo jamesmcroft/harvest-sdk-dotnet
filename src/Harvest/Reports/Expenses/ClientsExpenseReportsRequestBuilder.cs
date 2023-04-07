@@ -13,7 +13,7 @@ using Models;
 /// <summary>
 /// Defines the builder for operations to manage clients expense reports.
 /// </summary>
-public class ClientsExpenseReportsRequestBuilder
+public class ClientsExpenseReportsRequestBuilder : RequestBuilder
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="ClientsExpenseReportsRequestBuilder"/> class with the specified path parameters and request adapter.
@@ -21,31 +21,12 @@ public class ClientsExpenseReportsRequestBuilder
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public ClientsExpenseReportsRequestBuilder(Dictionary<string, object> pathParameters,
+    public ClientsExpenseReportsRequestBuilder(
+        Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
+        : base("{+baseurl}/reports/expenses/clients{?from,to,page,per_page}", pathParameters, requestAdapter)
     {
-        _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-        _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-
-        this.UrlTemplate = "{+baseurl}/reports/expenses/clients{?from,to,page,per_page}";
-        this.PathParameters = new Dictionary<string, object>(pathParameters);
-        this.RequestAdapter = requestAdapter;
     }
-
-    /// <summary>
-    /// Gets the path parameters to use to build the request URL.
-    /// </summary>
-    private Dictionary<string, object> PathParameters { get; }
-
-    /// <summary>
-    /// Gets the request adapter to use to execute the requests.
-    /// </summary>
-    private HarvestRequestAdapter RequestAdapter { get; }
-
-    /// <summary>
-    /// Gets the URL template to use to build the request URL.
-    /// </summary>
-    private string UrlTemplate { get; }
 
     /// <summary>
     /// Retrieves a list of clients expense reports.
@@ -67,45 +48,11 @@ public class ClientsExpenseReportsRequestBuilder
     }
 
     /// <summary>
-    /// Builds the request to retrieve a list of clients expense reports.
-    /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToGetRequestInformation(
-        Action<ClientsExpenseReportsRequestBuilderGetRequestConfiguration> requestConfiguration = default)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.GET,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new ClientsExpenseReportsRequestBuilderGetRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
-    }
-
-    /// <summary>
     /// Defines the configuration for the request to retrieve a list of clients expense reports.
     /// </summary>
-    public class ClientsExpenseReportsRequestBuilderGetRequestConfiguration : RequestConfiguration
+    public class ClientsExpenseReportsRequestBuilderGetRequestConfiguration
+        : QueryableRequestConfiguration<ClientsExpenseReportsRequestBuilderGetQueryParameters>
     {
-        /// <summary>
-        /// Gets or sets the query parameters for the request.
-        /// </summary>
-        public ClientsExpenseReportsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new();
     }
 
     /// <summary>

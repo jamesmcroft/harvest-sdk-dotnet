@@ -3,7 +3,7 @@ namespace Harvest.Common.Requests;
 /// <summary>
 /// Defines the parameters for paginated queries.
 /// </summary>
-public class PaginatedQueryParameters
+public class PaginatedQueryParameters : QueryParameters
 {
     /// <summary>
     /// Gets or sets the page number to use in pagination.

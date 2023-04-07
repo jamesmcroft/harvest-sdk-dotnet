@@ -3,15 +3,15 @@ namespace Harvest.Roles;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
 using Common.Requests;
 using Models;
 
 /// <summary>
 /// Defines the builder for operations to manage a specific role.
 /// </summary>
-public class RoleRequestBuilder
+public class RoleRequestBuilder : RequestBuilder
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="RoleRequestBuilder"/> class with the specified path parameters and request adapter.
@@ -20,29 +20,9 @@ public class RoleRequestBuilder
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
     public RoleRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
+        : base("{+baseurl}/roles/{+roleid}", pathParameters, requestAdapter)
     {
-        _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-        _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-
-        this.UrlTemplate = "{+baseurl}/roles/{+roleid}";
-        this.PathParameters = new Dictionary<string, object>(pathParameters);
-        this.RequestAdapter = requestAdapter;
     }
-
-    /// <summary>
-    /// Gets the path parameters to use to build the request URL.
-    /// </summary>
-    private Dictionary<string, object> PathParameters { get; }
-
-    /// <summary>
-    /// Gets the request adapter to use to execute the requests.
-    /// </summary>
-    private HarvestRequestAdapter RequestAdapter { get; }
-
-    /// <summary>
-    /// Gets the URL template to use to build the request URL.
-    /// </summary>
-    private string UrlTemplate { get; }
 
     /// <summary>
     /// Retrieves a role.
@@ -100,92 +80,6 @@ public class RoleRequestBuilder
     {
         RequestInformation requestInfo = this.ToDeleteRequestInformation(requestConfiguration);
         await this.RequestAdapter.SendAsync(requestInfo, cancellationToken);
-    }
-
-    /// <summary>
-    /// Builds the request to retrieve a role.
-    /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToGetRequestInformation(
-        Action<RoleRequestBuilderGetRequestConfiguration> requestConfiguration)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.GET, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new RoleRequestBuilderGetRequestConfiguration();
-        requestConfiguration(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-        return requestInfo;
-    }
-
-    /// <summary>
-    /// Builds the request to update a role.
-    /// </summary>
-    /// <param name="body">The request body.</param>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToPatchRequestInformation(
-        Role body,
-        Action<RoleRequestBuilderPatchRequestConfiguration> requestConfiguration)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.PATCH, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        requestInfo.SetJsonContent(body);
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new RoleRequestBuilderPatchRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
-    }
-
-    /// <summary>
-    /// Builds the request to delete a role.
-    /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToDeleteRequestInformation(
-        Action<RoleRequestBuilderDeleteRequestConfiguration> requestConfiguration)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.DELETE, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new RoleRequestBuilderDeleteRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
     }
 
     /// <summary>

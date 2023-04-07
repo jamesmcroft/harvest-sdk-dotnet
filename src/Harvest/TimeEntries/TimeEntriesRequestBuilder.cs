@@ -11,7 +11,7 @@ using Models;
 /// <summary>
 /// Defines the builder for operations to manage time entries.
 /// </summary>
-public class TimeEntriesRequestBuilder
+public class TimeEntriesRequestBuilder : RequestBuilder
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="TimeEntriesRequestBuilder"/> class with the specified path parameters and request adapter.
@@ -20,30 +20,12 @@ public class TimeEntriesRequestBuilder
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
     public TimeEntriesRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
+        : base(
+            "{+baseurl}/time_entries{?user_id,client_id,project_id,task_id,external_reference_id,is_billed,is_running,updated_since,from,to,page,per_page}",
+            pathParameters,
+            requestAdapter)
     {
-        _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-        _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-
-        this.UrlTemplate =
-            "{+baseurl}/time_entries{?user_id,client_id,project_id,task_id,external_reference_id,is_billed,is_running,updated_since,from,to,page,per_page}";
-        this.PathParameters = new Dictionary<string, object>(pathParameters);
-        this.RequestAdapter = requestAdapter;
     }
-
-    /// <summary>
-    /// Gets the path parameters to use to build the request URL.
-    /// </summary>
-    private Dictionary<string, object> PathParameters { get; }
-
-    /// <summary>
-    /// Gets the request adapter to use to execute the requests.
-    /// </summary>
-    private HarvestRequestAdapter RequestAdapter { get; }
-
-    /// <summary>
-    /// Gets the URL template to use to build the request URL.
-    /// </summary>
-    private string UrlTemplate { get; }
 
     /// <summary>
     /// Gets the builder for operations to manage a specific time entry.
@@ -100,80 +82,11 @@ public class TimeEntriesRequestBuilder
     }
 
     /// <summary>
-    /// Builds the request to retrieve a list of time entries.
-    /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToGetRequestInformation(
-        Action<TimeEntriesRequestBuilderGetRequestConfiguration> requestConfiguration = default)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.GET,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new TimeEntriesRequestBuilderGetRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
-    }
-
-    /// <summary>
-    /// Builds the request to create a time entry.
-    /// </summary>
-    /// <param name="body">The request body.</param>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
-    public RequestInformation ToPostRequestInformation(CreateTimeEntry body,
-        Action<TimeEntriesRequestBuilderPostRequestConfiguration> requestConfiguration)
-    {
-        _ = body ?? throw new ArgumentNullException(nameof(body));
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.POST,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        requestInfo.SetJsonContent(body);
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new TimeEntriesRequestBuilderPostRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
-    }
-
-    /// <summary>
     /// Defines the configuration for the request to retrieve a list of time entries.
     /// </summary>
-    public class TimeEntriesRequestBuilderGetRequestConfiguration : RequestConfiguration
+    public class TimeEntriesRequestBuilderGetRequestConfiguration
+        : QueryableRequestConfiguration<TimeEntriesRequestBuilderGetQueryParameters>
     {
-        /// <summary>
-        /// Gets or sets the query parameters for the request.
-        /// </summary>
-        public TimeEntriesRequestBuilderGetQueryParameters QueryParameters { get; set; } = new();
     }
 
     /// <summary>

@@ -39,6 +39,11 @@ public class HarvestRequestAdapter : IDisposable
     /// </summary>
     public string BaseUrl { get; set; }
 
+    /// <summary>
+    /// Gets or sets the base headers for every request.
+    /// </summary>
+    public Headers Headers { get; } = new();
+
     /// <inheritdoc />
     public void Dispose()
     {
@@ -131,13 +136,24 @@ public class HarvestRequestAdapter : IDisposable
         Uri requestUri = requestInfo.URI;
         var message = new HttpRequestMessage
         {
-            Method = new HttpMethod(requestInfo.HttpMethod.ToString().ToUpperInvariant()),
-            RequestUri = requestUri
+            Method = new HttpMethod(requestInfo.HttpMethod.ToString().ToUpperInvariant()), RequestUri = requestUri
         };
 
         if (requestInfo.Content != null && requestInfo.Content != Stream.Null)
         {
             message.Content = new StreamContent(requestInfo.Content);
+        }
+
+        Headers headers = this.Headers;
+        if (headers != null && headers.Any())
+        {
+            foreach (KeyValuePair<string, IEnumerable<string>> header in headers)
+            {
+                if (!message.Headers.TryAddWithoutValidation(header.Key, header.Value) && message.Content != null)
+                {
+                    message.Content.Headers.TryAddWithoutValidation(header.Key, header.Value);
+                }
+            }
         }
 
         if (!(requestInfo.Headers?.Any() ?? false))

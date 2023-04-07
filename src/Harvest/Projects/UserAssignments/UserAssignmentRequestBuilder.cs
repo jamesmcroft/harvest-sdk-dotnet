@@ -7,12 +7,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Common.Requests;
 using Models;
-using UserAssignments;
 
 /// <summary>
 /// Defines the builder for operations to manage a specific project user assignment.
 /// </summary>
-public class UserAssignmentRequestBuilder
+public class UserAssignmentRequestBuilder : RequestBuilder
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="UserAssignmentRequestBuilder"/> class with the specified path parameters and request adapter.
@@ -21,30 +20,9 @@ public class UserAssignmentRequestBuilder
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
     public UserAssignmentRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
+        : base("{+baseurl}/projects/{+projectid}/user_assignments/{+userassignmentid}", pathParameters, requestAdapter)
     {
-        _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-        _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-
-        this.UrlTemplate =
-            "{+baseurl}/projects/{+projectid}/user_assignments/{+userassignmentid}";
-        this.PathParameters = new Dictionary<string, object>(pathParameters);
-        this.RequestAdapter = requestAdapter;
     }
-
-    /// <summary>
-    /// Gets the path parameters to use to build the request URL.
-    /// </summary>
-    private Dictionary<string, object> PathParameters { get; }
-
-    /// <summary>
-    /// Gets the request adapter to use to execute the requests.
-    /// </summary>
-    private HarvestRequestAdapter RequestAdapter { get; }
-
-    /// <summary>
-    /// Gets the URL template to use to build the request URL.
-    /// </summary>
-    private string UrlTemplate { get; }
 
     /// <summary>
     /// Retrieves a user assignment.
@@ -102,92 +80,6 @@ public class UserAssignmentRequestBuilder
     {
         RequestInformation requestInfo = this.ToDeleteRequestInformation(requestConfiguration);
         await this.RequestAdapter.SendAsync(requestInfo, cancellationToken);
-    }
-
-    /// <summary>
-    /// Builds the request to retrieve a user assignment.
-    /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToGetRequestInformation(
-        Action<UserAssignmentRequestBuilderGetRequestConfiguration> requestConfiguration)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.GET, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new UserAssignmentRequestBuilderGetRequestConfiguration();
-        requestConfiguration(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-        return requestInfo;
-    }
-
-    /// <summary>
-    /// Builds the request to update a user assignment.
-    /// </summary>
-    /// <param name="body">The request body.</param>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToPatchRequestInformation(
-        UpdateUserAssignment body,
-        Action<UserAssignmentRequestBuilderPatchRequestConfiguration> requestConfiguration)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.PATCH, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        requestInfo.SetJsonContent(body);
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new UserAssignmentRequestBuilderPatchRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
-    }
-
-    /// <summary>
-    /// Builds the request to delete a user assignment.
-    /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToDeleteRequestInformation(
-        Action<UserAssignmentRequestBuilderDeleteRequestConfiguration> requestConfiguration)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.DELETE, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new UserAssignmentRequestBuilderDeleteRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
     }
 
     /// <summary>

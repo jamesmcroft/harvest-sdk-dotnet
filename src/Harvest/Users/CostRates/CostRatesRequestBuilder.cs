@@ -1,18 +1,17 @@
 namespace Harvest.Users.CostRates;
 
-using System.Collections.Generic;
-
 using System;
-using Common.Requests;
+using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Threading;
+using System.Threading.Tasks;
+using Common.Requests;
 using Models;
 
 /// <summary>
 /// Defines the builder for operations to manage the cost rates of the user.
 /// </summary>
-public class CostRatesRequestBuilder
+public class CostRatesRequestBuilder : RequestBuilder
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="CostRatesRequestBuilder"/> class with the specified path parameters and request adapter.
@@ -21,29 +20,9 @@ public class CostRatesRequestBuilder
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
     public CostRatesRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
+        : base("{+baseurl}/users/{+userid}/cost_rates{?page,per_page}", pathParameters, requestAdapter)
     {
-        _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-        _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-
-        this.UrlTemplate = "{+baseurl}/users/{+userid}/cost_rates{?page,per_page}";
-        this.PathParameters = new Dictionary<string, object>(pathParameters);
-        this.RequestAdapter = requestAdapter;
     }
-
-    /// <summary>
-    /// Gets the path parameters to use to build the request URL.
-    /// </summary>
-    private Dictionary<string, object> PathParameters { get; }
-
-    /// <summary>
-    /// Gets the request adapter to use to execute the requests.
-    /// </summary>
-    private HarvestRequestAdapter RequestAdapter { get; }
-
-    /// <summary>
-    /// Gets the URL template to use to build the request URL.
-    /// </summary>
-    private string UrlTemplate { get; }
 
     /// <summary>
     /// Gets the builder for operations to manage a specific cost rate of the user.
@@ -100,77 +79,11 @@ public class CostRatesRequestBuilder
     }
 
     /// <summary>
-    /// Builds the request to retrieve a list of cost rates for the user.
-    /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToGetRequestInformation(
-        Action<CostRatesRequestBuilderGetRequestConfiguration> requestConfiguration)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.GET, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new CostRatesRequestBuilderGetRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
-    }
-
-    /// <summary>
-    /// Builds the request to create a new cost rate for the user.
-    /// </summary>
-    /// <param name="body">The request body.</param>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="body"/> is <see langword="null"/>.</exception>
-    public RequestInformation ToPostRequestInformation(
-        CreateCostRate body,
-        Action<CostRatesRequestBuilderPostRequestConfiguration> requestConfiguration)
-    {
-        _ = body ?? throw new ArgumentNullException(nameof(body));
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.POST, UrlTemplate = this.UrlTemplate, PathParameters = this.PathParameters
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        requestInfo.SetJsonContent(body);
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new CostRatesRequestBuilderPostRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
-    }
-
-    /// <summary>
     /// Defines the configuration for the request to retrieve a list of cost rates for the user.
     /// </summary>
-    public class CostRatesRequestBuilderGetRequestConfiguration : RequestConfiguration
+    public class CostRatesRequestBuilderGetRequestConfiguration
+        : QueryableRequestConfiguration<CostRatesRequestBuilderGetQueryParameters>
     {
-        /// <summary>
-        /// Gets or sets the query parameters for the request.
-        /// </summary>
-        public CostRatesRequestBuilderGetQueryParameters QueryParameters { get; set; } = new();
     }
 
     /// <summary>

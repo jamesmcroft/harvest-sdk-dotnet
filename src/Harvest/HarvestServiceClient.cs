@@ -25,7 +25,9 @@ public partial class HarvestServiceClient
     /// Initializes a new instance of the <see cref="HarvestServiceClient"/> class with the specified authentication credential.
     /// </summary>
     /// <param name="authCredential">The authentication credential used to authenticate the client.</param>
-    public HarvestServiceClient(AuthCredential authCredential) : this(new HarvestRequestAdapter(authCredential))
+    /// <param name="applicationId">The identifier for the calling application.</param>
+    public HarvestServiceClient(AuthCredential authCredential, string applicationId)
+        : this(new HarvestRequestAdapter(authCredential), applicationId)
     {
         this.authCredential = authCredential;
     }
@@ -34,12 +36,14 @@ public partial class HarvestServiceClient
     /// Initializes a new instance of the <see cref="HarvestServiceClient"/> class with the specified request adapter.
     /// </summary>
     /// <param name="requestAdapter">The request adapter for sending requests.</param>
-    public HarvestServiceClient(HarvestRequestAdapter requestAdapter)
+    /// <param name="applicationId">The identifier for the calling application.</param>
+    public HarvestServiceClient(HarvestRequestAdapter requestAdapter, string applicationId)
     {
         _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
         this.PathParameters = new Dictionary<string, object>();
         this.UrlTemplate = "{+baseurl}";
         this.RequestAdapter = requestAdapter;
+        this.RequestAdapter.Headers.Add("User-Agent", applicationId);
         this.authCredential = this.RequestAdapter.Credential;
         this.RequestAdapter.BaseUrl = "https://api.harvestapp.com/v2";
         this.PathParameters.TryAdd("baseurl", this.RequestAdapter.BaseUrl);

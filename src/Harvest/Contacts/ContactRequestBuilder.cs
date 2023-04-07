@@ -11,7 +11,7 @@ using Models;
 /// <summary>
 /// Defines the builder for operations to manage a specific contact.
 /// </summary>
-public class ContactRequestBuilder
+public class ContactRequestBuilder : RequestBuilder
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="ContactRequestBuilder"/> class with the specified path parameters and request adapter.
@@ -20,29 +20,9 @@ public class ContactRequestBuilder
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
     public ContactRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
+        : base("{+baseurl}/contacts/{+contactid}", pathParameters, requestAdapter)
     {
-        _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-        _ = requestAdapter ?? throw new ArgumentNullException(nameof(requestAdapter));
-
-        this.UrlTemplate = "{+baseurl}/contacts/{+contactid}";
-        this.PathParameters = new Dictionary<string, object>(pathParameters);
-        this.RequestAdapter = requestAdapter;
     }
-
-    /// <summary>
-    /// Gets the path parameters to use to build the request URL.
-    /// </summary>
-    private Dictionary<string, object> PathParameters { get; }
-
-    /// <summary>
-    /// Gets the request adapter to use to execute the requests.
-    /// </summary>
-    private HarvestRequestAdapter RequestAdapter { get; }
-
-    /// <summary>
-    /// Gets the URL template to use to build the request URL.
-    /// </summary>
-    private string UrlTemplate { get; }
 
     /// <summary>
     /// Retrieves a contact.
@@ -100,98 +80,6 @@ public class ContactRequestBuilder
     {
         RequestInformation requestInfo = this.ToDeleteRequestInformation(requestConfiguration);
         await this.RequestAdapter.SendAsync(requestInfo, cancellationToken);
-    }
-
-    /// <summary>
-    /// Builds the request to retrieve a contact.
-    /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToGetRequestInformation(
-        Action<ContactRequestBuilderGetRequestConfiguration> requestConfiguration)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.GET,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new ContactRequestBuilderGetRequestConfiguration();
-        requestConfiguration(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-        return requestInfo;
-    }
-
-    /// <summary>
-    /// Builds the request to update a contact.
-    /// </summary>
-    /// <param name="body">The request body.</param>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToPatchRequestInformation(
-        UpdateContact body,
-        Action<ContactRequestBuilderPatchRequestConfiguration> requestConfiguration)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.PATCH,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-        requestInfo.Headers.Add("Accept", "application/json");
-
-        requestInfo.SetJsonContent(body);
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new ContactRequestBuilderPatchRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
-    }
-
-    /// <summary>
-    /// Builds the request to delete a contact.
-    /// </summary>
-    /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
-    /// <returns>A request information object.</returns>
-    public RequestInformation ToDeleteRequestInformation(
-        Action<ContactRequestBuilderDeleteRequestConfiguration> requestConfiguration)
-    {
-        var requestInfo = new RequestInformation
-        {
-            HttpMethod = Method.DELETE,
-            UrlTemplate = this.UrlTemplate,
-            PathParameters = this.PathParameters,
-        };
-
-        requestInfo.Headers.Add("User-Agent", "HarvestDotnetSdk");
-
-        if (requestConfiguration == null)
-        {
-            return requestInfo;
-        }
-
-        var requestConfig = new ContactRequestBuilderDeleteRequestConfiguration();
-        requestConfiguration.Invoke(requestConfig);
-        requestInfo.AddHeaders(requestConfig.Headers);
-
-        return requestInfo;
     }
 
     /// <summary>
