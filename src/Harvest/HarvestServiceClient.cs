@@ -8,6 +8,7 @@ using Common.Requests;
 using Projects;
 using Reports;
 using Roles;
+using Tasks;
 using TimeEntries;
 using UserAssignments;
 using Users;
@@ -55,6 +56,11 @@ public partial class HarvestServiceClient
     /// Gets the builder for operations to manage roles.
     /// </summary>
     public RolesRequestBuilder Roles => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
+    /// Gets the builder for operations to manage tasks.
+    /// </summary>
+    public TasksRequestBuilder Tasks => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the builder for operations to manage time entries.
