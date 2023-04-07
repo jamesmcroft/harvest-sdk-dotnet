@@ -3,6 +3,7 @@ namespace Harvest.Expenses.Models;
 using System;
 using Clients.Models;
 using Common.Responses;
+using Harvest.ExpenseCategories.Models;
 using Invoices.Models;
 using Newtonsoft.Json;
 using Projects.Models;

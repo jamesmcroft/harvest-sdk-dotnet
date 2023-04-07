@@ -8,6 +8,7 @@ using Common.Extensions;
 using Common.Requests;
 using Company;
 using Contacts;
+using ExpenseCategories;
 using Expenses;
 using Projects;
 using Reports;
@@ -69,6 +70,11 @@ public partial class HarvestServiceClient
     /// Gets the builder for operations to manage expenses.
     /// </summary>
     public ExpensesRequestBuilder Expenses => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
+    /// Gets the builder for operations to manage expense categories.
+    /// </summary>
+    public ExpenseCategoriesRequestBuilder ExpenseCategories => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the builder for operations to manage projects.

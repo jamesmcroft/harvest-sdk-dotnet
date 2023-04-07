@@ -1,4 +1,4 @@
-namespace Harvest.Expenses.Models;
+namespace Harvest.ExpenseCategories.Models;
 
 using Common.Responses;
 using Newtonsoft.Json;
