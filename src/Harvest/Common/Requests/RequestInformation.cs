@@ -171,8 +171,8 @@ public class RequestInformation
         return value switch
         {
             bool boolean => boolean.ToString().ToLower(),
-            DateTimeOffset dateTimeOffset => dateTimeOffset.ToString("o"),
-            DateTime dateTime => dateTime.ToString("o"),
+            DateTimeOffset dateTimeOffset => dateTimeOffset.ToString("O"),
+            DateTime dateTime => dateTime.ToString("O"),
             _ => value
         };
     }

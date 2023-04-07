@@ -136,6 +136,13 @@ public abstract class RequestBuilder
         return ConfigureRequest(requestConfiguration, requestInfo);
     }
 
+    /// <summary>
+    /// Configures the result request information using the specified request configuration.
+    /// </summary>
+    /// <typeparam name="TConfiguration">The type of configuration.</typeparam>
+    /// <param name="requestConfiguration">The requested configuration.</param>
+    /// <param name="requestInfo">The request information object.</param>
+    /// <returns>The configured request information object.</returns>
     protected static RequestInformation ConfigureRequest<TConfiguration>(
         Action<TConfiguration> requestConfiguration,
         RequestInformation requestInfo)
