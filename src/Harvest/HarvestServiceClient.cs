@@ -3,6 +3,7 @@ namespace Harvest;
 using System;
 using System.Collections.Generic;
 using Authentication;
+using Clients;
 using Common.Extensions;
 using Common.Requests;
 using Projects;
@@ -41,6 +42,11 @@ public partial class HarvestServiceClient
         this.RequestAdapter.BaseUrl = "https://api.harvestapp.com/v2";
         this.PathParameters.TryAdd("baseurl", this.RequestAdapter.BaseUrl);
     }
+
+    /// <summary>
+    /// Gets the builder for operations to manage clients.
+    /// </summary>
+    public ClientsRequestBuilder Clients => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the builder for operations to manage projects.
