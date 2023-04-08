@@ -28,7 +28,7 @@ public class EstimateRequestBuilder : RequestBuilder
     /// <summary>
     /// Gets the builder for operations to manage estimate messages for this estimate.
     /// </summary>
-    public EstimateMessagesRequestBuilder EstimateMessages => new(this.PathParameters, this.RequestAdapter);
+    public EstimateMessagesRequestBuilder Messages => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Retrieves an estimate.

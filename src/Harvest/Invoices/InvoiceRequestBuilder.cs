@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Requests;
+using InvoiceMessages;
 using Models;
 
 /// <summary>
@@ -23,6 +24,11 @@ public class InvoiceRequestBuilder : RequestBuilder
         : base("{+baseurl}/invoices/{+invoiceid}", pathParameters, requestAdapter)
     {
     }
+
+    /// <summary>
+    /// Gets the builder for operations to manage the messages of a specific invoice.
+    /// </summary>
+    public InvoiceMessagesRequestBuilder Messages => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Retrieves an invoice.
