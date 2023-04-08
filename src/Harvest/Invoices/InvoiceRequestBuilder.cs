@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Common.Requests;
 using InvoiceMessages;
+using InvoicePayments;
 using Models;
 
 /// <summary>
@@ -29,6 +30,11 @@ public class InvoiceRequestBuilder : RequestBuilder
     /// Gets the builder for operations to manage the messages of a specific invoice.
     /// </summary>
     public InvoiceMessagesRequestBuilder Messages => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
+    /// Gets the builder for operations to manage the payments of a specific invoice.
+    /// </summary>
+    public InvoicePaymentsRequestBuilder Payments => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Retrieves an invoice.
