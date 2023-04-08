@@ -1,31 +1,38 @@
-namespace Harvest.Estimates.Models;
+namespace Harvest.Invoices.Models;
 
 using System;
 using System.Collections.Generic;
 using Clients.Models;
-using Common.Serialization;
+using Estimates.Models;
+using Harvest.Common.Serialization;
 using Newtonsoft.Json;
 using Users.Models;
 
 /// <summary>
-/// Defines the detail for an estimate.
+/// Defines the detail for an invoice.
 /// </summary>
-public class Estimate : EstimateSummary
+public class Invoice : InvoiceSummary
 {
     /// <summary>
-    /// Gets or sets the client associated with the estimate.
+    /// Gets or sets the client of the invoice.
     /// </summary>
     [JsonProperty("client")]
     public ClientSummary Client { get; set; }
 
     /// <summary>
-    /// Gets or sets the line items for the estimate.
+    /// Gets or sets the line items for the invoice.
     /// </summary>
     [JsonProperty("line_items")]
-    public List<EstimateLineItem> LineItems { get; set; }
+    public List<InvoiceLineItem> LineItems { get; set; }
 
     /// <summary>
-    /// Gets or sets the creator of the estimate.
+    /// Gets or sets the estimate associated with the invoice.
+    /// </summary>
+    [JsonProperty("estimate")]
+    public EstimateSummary Estimate { get; set; }
+
+    /// <summary>
+    /// Gets or sets the creator of the invoice.
     /// </summary>
     [JsonProperty("creator")]
     public UserSummary Creator { get; set; }
@@ -37,13 +44,7 @@ public class Estimate : EstimateSummary
     public string ClientKey { get; set; }
 
     /// <summary>
-    /// Gets or sets the number for the estimate.
-    /// </summary>
-    [JsonProperty("number")]
-    public string Number { get; set; }
-
-    /// <summary>
-    /// Gets or sets the purchase order number for the estimate.
+    /// Gets or sets the purchase order number for the invoice.
     /// </summary>
     [JsonProperty("purchase_order")]
     public string PurchaseOrder { get; set; }
@@ -53,6 +54,12 @@ public class Estimate : EstimateSummary
     /// </summary>
     [JsonProperty("amount")]
     public decimal? Amount { get; set; }
+
+    /// <summary>
+    /// Gets or sets the total amount due at this time for this invoice.
+    /// </summary>
+    [JsonProperty("due_amount")]
+    public decimal? DueAmount { get; set; }
 
     /// <summary>
     /// Gets or sets the percentage applied to the subtotal, including line items and discounts.
@@ -109,33 +116,71 @@ public class Estimate : EstimateSummary
     public string Currency { get; set; }
 
     /// <summary>
-    /// Gets or sets the state of the estimate.
+    /// Gets or sets the state of the invoice.
     /// </summary>
     [JsonProperty("state")]
     [JsonConverter(typeof(EnumStringValueConverter))]
-    public EstimateState State { get; set; }
+
+    public InvoiceState State { get; set; }
 
     /// <summary>
-    /// Gets or sets the date the estimate was issued.
+    /// Gets or sets the start of the period during which time entries were added to this invoice.
+    /// </summary>
+    [JsonProperty("period_start")]
+    public DateTime? PeriodState { get; set; }
+
+    /// <summary>
+    /// Gets or sets the end of the period during which time entries were added to this invoice.
+    /// </summary>
+    [JsonProperty("period_end")]
+    public DateTime? PeriodEnd { get; set; }
+
+    /// <summary>
+    /// Gets or sets the date the invoice was issued.
     /// </summary>
     [JsonProperty("issue_date")]
     public DateTime? IssueDate { get; set; }
 
     /// <summary>
-    /// Gets or sets the date the estimate was sent.
+    /// Gets or sets the date the invoice is due.
+    /// </summary>
+    [JsonProperty("due_date")]
+    public DateTime? DueDate { get; set; }
+
+    /// <summary>
+    /// Gets or sets the time frame in which the invoice should be paid.
+    /// </summary>
+    [JsonProperty("payment_term")]
+    [JsonConverter(typeof(EnumStringValueConverter))]
+    public InvoicePaymentTerm PaymentTerm { get; set; }
+
+    /// <summary>
+    /// Gets or sets the date the invoice was sent.
     /// </summary>
     [JsonProperty("sent_at")]
     public DateTime? SentAt { get; set; }
 
     /// <summary>
-    /// Gets or sets the date the estimate was accepted.
+    /// Gets or sets the date the invoice was paid.
     /// </summary>
-    [JsonProperty("accepted_at")]
-    public DateTime? AcceptedAt { get; set; }
+    [JsonProperty("paid_at")]
+    public DateTime? PaidAt { get; set; }
 
     /// <summary>
-    /// Gets or sets the date the estimate was declined.
+    /// Gets or sets the date the invoice was paid.
     /// </summary>
-    [JsonProperty("declined_at")]
-    public DateTime? DeclinedAt { get; set; }
+    [JsonProperty("paid_date")]
+    public DateTime? PaidDate { get; set; }
+
+    /// <summary>
+    /// Gets or sets the date the invoice was closed.
+    /// </summary>
+    [JsonProperty("closed_at")]
+    public DateTime? ClosedAt { get; set; }
+
+    /// <summary>
+    /// Gets or sets the ID of the associated recurring invoice.
+    /// </summary>
+    [JsonProperty("recurring_invoice_id")]
+    public long? RecurringInvoiceId { get; set; }
 }

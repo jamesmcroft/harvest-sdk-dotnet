@@ -1,12 +1,13 @@
-namespace Harvest.Estimates.Models;
+namespace Harvest.Invoices.Models;
 
-using EstimateItemCategories.Models;
+using InvoiceItemCategories.Models;
 using Newtonsoft.Json;
+using Projects.Models;
 
 /// <summary>
-/// Defines the detail for an estimate line item.
+/// Defines the detail for an invoice line item.
 /// </summary>
-public class EstimateLineItem
+public class InvoiceLineItem
 {
     /// <summary>
     /// Gets or sets the unique identifier for the line item.
@@ -15,13 +16,19 @@ public class EstimateLineItem
     public long Id { get; set; }
 
     /// <summary>
-    /// Gets or sets the name of an <see cref="EstimateItemCategory"/>.
+    /// Gets or sets the project associated with the line item.
+    /// </summary>
+    [JsonProperty("project")]
+    public ProjectSummary Project { get; set; }
+
+    /// <summary>
+    /// Gets or sets the name of an <see cref="InvoiceItemCategory"/>.
     /// </summary>
     [JsonProperty("kind")]
     public string Kind { get; set; }
 
     /// <summary>
-    /// Gets or sets the description of the line item.
+    /// Gets or sets the text description of the line item.
     /// </summary>
     [JsonProperty("description")]
     public string Description { get; set; }

@@ -12,7 +12,7 @@ public class UpdateEstimateLineItem
     /// Gets or sets the unique identifier for the line item.
     /// </summary>
     [JsonProperty("id")]
-    public long? Id { get; set; }
+    public long Id { get; set; }
 
     /// <summary>
     /// Gets or sets the name of an <see cref="EstimateItemCategory"/>.

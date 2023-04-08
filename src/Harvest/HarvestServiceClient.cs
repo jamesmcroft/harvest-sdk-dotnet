@@ -2,6 +2,7 @@ namespace Harvest;
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Authentication;
 using Clients;
 using Common.Extensions;
@@ -12,6 +13,7 @@ using EstimateItemCategories;
 using Estimates;
 using ExpenseCategories;
 using Expenses;
+using Invoices;
 using Projects;
 using Reports;
 using Roles;
@@ -87,6 +89,11 @@ public partial class HarvestServiceClient
     /// Gets the builder for operations to manage expense categories.
     /// </summary>
     public ExpenseCategoriesRequestBuilder ExpenseCategories => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
+    /// Gets the builder for operations to manage invoices.
+    /// </summary>
+    public InvoicesRequestBuilder Invoices => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Gets the builder for operations to manage projects.
