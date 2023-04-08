@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Common.Requests;
+using EstimateMessages;
 using Models;
 
 /// <summary>
@@ -23,6 +24,11 @@ public class EstimateRequestBuilder : RequestBuilder
         : base("{+baseurl}/estimates/{+estimateid}", pathParameters, requestAdapter)
     {
     }
+
+    /// <summary>
+    /// Gets the builder for operations to manage estimate messages for this estimate.
+    /// </summary>
+    public EstimateMessagesRequestBuilder EstimateMessages => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
     /// Retrieves an estimate.
