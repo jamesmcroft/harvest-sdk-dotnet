@@ -37,7 +37,7 @@ public class EstimateItemCategoriesRequestBuilder : RequestBuilder
             var urlTemplateParams =
                 new Dictionary<string, object>(this.PathParameters)
                 {
-                    { "estimateitemcategory", estimateItemCategoryId }
+                    { "estimateitemcategoryid", estimateItemCategoryId }
                 };
             return new EstimateItemCategoryRequestBuilder(urlTemplateParams, this.RequestAdapter);
         }
