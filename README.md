@@ -28,7 +28,7 @@ To register your application, visit the [Harvest Developer Portal](https://id.ge
 
 An instance of the `HarvestServiceClient` class handles building requests, sending them to the Harvest API, and processing the responses. To Create a new instance of this class, you need to provide an instance of `AuthCredential` which contains your OAuth2 or PAT credentials to authenticate requests to the Harvest API.
 
-For more information on initializing a client instance, see the [Getting Started](docs/overview.md) documentation.
+For more information on initializing a client instance, see the [Getting Started](docs/readme.md) documentation.
 
 ### 3. Make requests to the Harvest API
 
@@ -42,11 +42,11 @@ var projects = await harvestClient.Projects.GetAsync();
 
 `GetAsync` will return a `ProjectsResponse` object on success which contains a list of `Project` objects.
 
-For more information on making requests to the Harvest API, see the [Getting Started](docs/overview.md) documentation.
+For more information on making requests to the Harvest API, see the [Getting Started](docs/readme.md) documentation.
 
 ## Documentation and resources
 
-- [Getting Started](docs/overview.md)
+- [Getting Started](docs/readme.md)
 - [Harvest API Documentation](https://help.getharvest.com/api-v2/)
 - [Release Notes](https://github.com/jamesmcroft/harvest-sdk-dotnet/releases)
 - [NuGet Package](https://www.nuget.org/packages/Harvest.Sdk/)
