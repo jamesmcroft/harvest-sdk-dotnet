@@ -26,7 +26,7 @@ jobs:
 
     env:
       BUILD_CONFIG: 'Release'
-      SOLUTION: 'Harvest.sln'
+      PROJECT: 'src/Harvest/Harvest.csproj'
 
     runs-on: ubuntu-latest
 
@@ -49,12 +49,12 @@ jobs:
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.5
 
-    - name: Restore dependencies
-      run: dotnet restore $SOLUTION
+    - name: Restore project dependencies
+      run: dotnet restore $PROJECT
 
-    - name: Build
-      run: dotnet build $SOLUTION --configuration $BUILD_CONFIG -p:Version=$BUILD_VERSION --no-restore
+    - name: Build project
+      run: dotnet build $PROJECT --configuration $BUILD_CONFIG -p:Version=$BUILD_VERSION --no-restore
 
-    - name: Publish
+    - name: Publish packages
       if: startsWith(github.ref, 'refs/tags/v')
       run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
