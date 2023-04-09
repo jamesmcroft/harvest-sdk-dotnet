@@ -17,6 +17,7 @@ using Invoices;
 using Projects;
 using Reports;
 using Roles;
+using TaskAssignments;
 using Tasks;
 using TimeEntries;
 using UserAssignments;
@@ -121,6 +122,11 @@ public partial class HarvestServiceClient
     public TasksRequestBuilder Tasks => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
+    /// Gets the builder for operations to manage task assignments.
+    /// </summary>
+    public TaskAssignmentsRequestBuilder TaskAssignments => new(this.PathParameters, this.RequestAdapter);
+
+    /// <summary>
     /// Gets the builder for operations to manage time entries.
     /// </summary>
     public TimeEntriesRequestBuilder TimeEntries => new(this.PathParameters, this.RequestAdapter);
@@ -131,7 +137,7 @@ public partial class HarvestServiceClient
     public UsersRequestBuilder Users => new(this.PathParameters, this.RequestAdapter);
 
     /// <summary>
-    /// Gets the builder for operations to manager user assignments.
+    /// Gets the builder for operations to manage user assignments.
     /// </summary>
     public UserAssignmentsRequestBuilder UserAssignments => new(this.PathParameters, this.RequestAdapter);
 
