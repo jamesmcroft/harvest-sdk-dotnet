@@ -9,7 +9,7 @@
     <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <AssemblyName>Harvest</AssemblyName>
-    <PackageId>Harvest</PackageId>
+    <PackageId>Harvest.Sdk</PackageId>
     <PackageTags>Harvest;Harvest Time Tracking;HarvestServiceClient;HarvestAPI;SDK</PackageTags>
     <PackageProjectUrl>https://github.com/jamesmcroft/harvest-sdk-dotnet</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
