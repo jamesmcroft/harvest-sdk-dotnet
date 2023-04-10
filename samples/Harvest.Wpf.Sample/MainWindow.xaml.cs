@@ -1,8 +1,8 @@
-namespace Harvest.Wpf.Tests;
+namespace Harvest.Wpf.Sample;
 
 using System;
 using System.Windows;
-using Authentication;
+using Harvest.Authentication;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
@@ -21,7 +21,7 @@ public partial class MainWindow : Window
             "CLIENT_SECRET",
             new Uri("http://localhost:8080"));
 
-        this.client = new HarvestServiceClient(this.authCredential);
+        this.client = new HarvestServiceClient(this.authCredential, "HarvestWpfSample");
 
         if (this.authCredential is not OAuthCredential)
         {

@@ -3,11 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvest", "src\Harvest\Harvest.csproj", "{7C694AD9-5A0B-4903-ADCA-0DCDACD3C342}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Harvest", "src\Harvest\Harvest.csproj", "{7C694AD9-5A0B-4903-ADCA-0DCDACD3C342}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0B394B80-F9F3-4AB9-B7B2-C3BD7AA61AD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvest.Wpf.Tests", "tests\Harvest.Wpf.Tests\Harvest.Wpf.Tests.csproj", "{14E9223C-05EC-43BB-B485-0E0D0808CC6C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{48A3236D-8DE3-4C81-81F6-39B2C454CCCC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Harvest.Wpf.Sample", "samples\Harvest.Wpf.Sample\Harvest.Wpf.Sample.csproj", "{80C85016-A29D-422F-9DF3-72D8FAA135D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Harvest.Tests", "tests\Harvest.Tests\Harvest.Tests.csproj", "{DF334FCB-1D14-431D-902C-8D698929DE7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,16 +23,21 @@ Global
 		{7C694AD9-5A0B-4903-ADCA-0DCDACD3C342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C694AD9-5A0B-4903-ADCA-0DCDACD3C342}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C694AD9-5A0B-4903-ADCA-0DCDACD3C342}.Release|Any CPU.Build.0 = Release|Any CPU
-		{14E9223C-05EC-43BB-B485-0E0D0808CC6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14E9223C-05EC-43BB-B485-0E0D0808CC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14E9223C-05EC-43BB-B485-0E0D0808CC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14E9223C-05EC-43BB-B485-0E0D0808CC6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80C85016-A29D-422F-9DF3-72D8FAA135D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80C85016-A29D-422F-9DF3-72D8FAA135D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80C85016-A29D-422F-9DF3-72D8FAA135D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80C85016-A29D-422F-9DF3-72D8FAA135D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF334FCB-1D14-431D-902C-8D698929DE7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF334FCB-1D14-431D-902C-8D698929DE7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF334FCB-1D14-431D-902C-8D698929DE7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF334FCB-1D14-431D-902C-8D698929DE7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{14E9223C-05EC-43BB-B485-0E0D0808CC6C} = {0B394B80-F9F3-4AB9-B7B2-C3BD7AA61AD7}
+		{80C85016-A29D-422F-9DF3-72D8FAA135D7} = {48A3236D-8DE3-4C81-81F6-39B2C454CCCC}
+		{DF334FCB-1D14-431D-902C-8D698929DE7A} = {0B394B80-F9F3-4AB9-B7B2-C3BD7AA61AD7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {02DC2C0D-C2A0-4B33-8E7B-3B4E22654FB3}
