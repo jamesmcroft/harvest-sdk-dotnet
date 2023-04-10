@@ -46,14 +46,14 @@ jobs:
         with:
           dotnet-version: 7.0.x
 
+      - name: Restore project dependencies
+        run: dotnet restore $PROJECT
+
       - name: Restore test project dependencies
         run: dotnet restore $TEST_PROJECT
 
       - name: Run tests
-        run: dotnet test $TEST_PROJECT --configuration $BUILD_CONFIG --no-restore
-
-      - name: Restore project dependencies
-        run: dotnet restore $PROJECT
+        run: dotnet test $TEST_PROJECT --configuration Debug --no-restore
 
       - name: Build project
         run: dotnet build $PROJECT --configuration $BUILD_CONFIG -p:Version=$BUILD_VERSION --no-restore
