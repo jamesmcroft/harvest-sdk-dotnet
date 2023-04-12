@@ -10,12 +10,12 @@ public class AccessToken
     /// <summary>
     /// Initializes a new instance of the <see cref="AccessToken"/> class with the specified access token value and expiry information.
     /// </summary>
-    /// <param name="accessToken">The bearer access token value.</param>
+    /// <param name="token">The bearer access token value.</param>
     /// <param name="expiresOn">The time when the provided bearer access token expires.</param>
     /// <param name="refreshToken">The refresh token value.</param>
-    public AccessToken(string accessToken, DateTimeOffset expiresOn = default, string refreshToken = default)
+    public AccessToken(string token, DateTimeOffset expiresOn = default, string refreshToken = default)
     {
-        this.Token = accessToken;
+        this.Token = token;
         this.ExpiresOn = expiresOn;
         this.RefreshToken = refreshToken;
     }
