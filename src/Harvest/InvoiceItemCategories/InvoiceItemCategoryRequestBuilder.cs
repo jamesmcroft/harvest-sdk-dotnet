@@ -19,7 +19,8 @@ public class InvoiceItemCategoryRequestBuilder : RequestBuilder
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public InvoiceItemCategoryRequestBuilder(Dictionary<string, object> pathParameters,
+    public InvoiceItemCategoryRequestBuilder(
+        Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
         : base("{+baseurl}/invoice_item_categories/{+invoiceitemcategoryid}", pathParameters, requestAdapter)
     {
@@ -29,7 +30,7 @@ public class InvoiceItemCategoryRequestBuilder : RequestBuilder
     /// Retrieves an invoice item category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-item-categories/#retrieve-an-invoice-item-category
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-item-categories/#retrieve-an-invoice-item-category.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -47,7 +48,7 @@ public class InvoiceItemCategoryRequestBuilder : RequestBuilder
     /// Updates an invoice item category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-item-categories/#update-an-invoice-item-category
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-item-categories/#update-an-invoice-item-category.
     /// </remarks>
     /// <param name="body">The invoice item category details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -69,7 +70,7 @@ public class InvoiceItemCategoryRequestBuilder : RequestBuilder
     /// Deletes an invoice item category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-item-categories/#delete-an-invoice-item-category
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-item-categories/#delete-an-invoice-item-category.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

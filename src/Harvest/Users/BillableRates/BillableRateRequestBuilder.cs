@@ -28,7 +28,7 @@ public class BillableRateRequestBuilder : RequestBuilder
     /// Retrieves a billable rate for a user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/billable-rates/#retrieve-a-billable-rate
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/billable-rates/#retrieve-a-billable-rate.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

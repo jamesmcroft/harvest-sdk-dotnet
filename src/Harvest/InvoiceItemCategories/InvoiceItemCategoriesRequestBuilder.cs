@@ -19,7 +19,8 @@ public class InvoiceItemCategoriesRequestBuilder : RequestBuilder
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public InvoiceItemCategoriesRequestBuilder(Dictionary<string, object> pathParameters,
+    public InvoiceItemCategoriesRequestBuilder(
+        Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
         : base("{+baseurl}/invoice_item_categories{?updated_since,page,per_page}", pathParameters, requestAdapter)
     {
@@ -47,7 +48,7 @@ public class InvoiceItemCategoriesRequestBuilder : RequestBuilder
     /// Retrieves a list of invoice item categories.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-item-categories/#list-all-invoice-item-categories
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-item-categories/#list-all-invoice-item-categories.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -65,7 +66,7 @@ public class InvoiceItemCategoriesRequestBuilder : RequestBuilder
     /// Creates a new invoice item category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-item-categories/#create-an-invoice-item-category
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-item-categories/#create-an-invoice-item-category.
     /// </remarks>
     /// <param name="body">The invoice item category to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

@@ -21,7 +21,7 @@ public class User : UserSummary
     public string TimeZone { get; set; }
 
     /// <summary>
-    /// Gets or set a value indicating whether the user has access to all future projects.
+    /// Gets or sets a value indicating whether the user has access to all future projects.
     /// </summary>
     [JsonProperty("has_access_to_all_future_projects")]
     public bool? HasAccessToAllFutureProjects { get; set; }

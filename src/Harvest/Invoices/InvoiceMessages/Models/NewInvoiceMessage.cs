@@ -26,7 +26,7 @@ public class NewInvoiceMessage
     public string Body { get; set; }
 
     /// <summary>
-    /// Gets or set a value indicating whether this is a reminder message.
+    /// Gets or sets a value indicating whether this is a reminder message.
     /// </summary>
     [JsonProperty("reminder")]
     public bool? Reminder { get; set; }

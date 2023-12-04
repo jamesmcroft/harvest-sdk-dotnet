@@ -42,7 +42,7 @@ public class RolesRequestBuilder : RequestBuilder
     /// Retrieves a list of roles.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/roles-api/roles/roles/#list-all-roles
+    /// For more information: https://help.getharvest.com/api-v2/roles-api/roles/roles/#list-all-roles.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -60,7 +60,7 @@ public class RolesRequestBuilder : RequestBuilder
     /// Creates a new role.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/roles-api/roles/roles/#create-a-role
+    /// For more information: https://help.getharvest.com/api-v2/roles-api/roles/roles/#create-a-role.
     /// </remarks>
     /// <param name="body">The role to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

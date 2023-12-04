@@ -20,7 +20,9 @@ public class InvoicesRequestBuilder : RequestBuilder
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
     public InvoicesRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
-        : base("{+baseurl}/invoices{?client_id,project_id,updated_since,from,to,state,page,per_page}", pathParameters,
+        : base(
+            "{+baseurl}/invoices{?client_id,project_id,updated_since,from,to,state,page,per_page}",
+            pathParameters,
             requestAdapter)
     {
     }
@@ -44,7 +46,7 @@ public class InvoicesRequestBuilder : RequestBuilder
     /// Retrieves a list of invoices.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#list-all-invoices
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#list-all-invoices.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -62,7 +64,7 @@ public class InvoicesRequestBuilder : RequestBuilder
     /// Creates a new invoice.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoices
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoices.
     /// </remarks>
     /// <param name="body">The invoice to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

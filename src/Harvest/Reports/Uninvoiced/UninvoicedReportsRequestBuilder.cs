@@ -32,7 +32,7 @@ public class UninvoicedReportsRequestBuilder : RequestBuilder
     /// Retrieves a list of uninvoiced reports.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/reports-api/reports/uninvoiced-report/#uninvoiced-report
+    /// For more information: https://help.getharvest.com/api-v2/reports-api/reports/uninvoiced-report/#uninvoiced-report.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -43,7 +43,8 @@ public class UninvoicedReportsRequestBuilder : RequestBuilder
         CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
-        return await this.RequestAdapter.SendAsync<ResultsResponse<UninvoicedReport>>(requestInfo,
+        return await this.RequestAdapter.SendAsync<ResultsResponse<UninvoicedReport>>(
+            requestInfo,
             cancellationToken);
     }
 

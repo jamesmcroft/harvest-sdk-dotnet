@@ -6,7 +6,7 @@
     <AssemblyTitle>Harvest Time Tracking Client Library</AssemblyTitle>
     <Authors>James Croft</Authors>
     <Version>1.0.0.0</Version>
-    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
     <AssemblyName>Harvest</AssemblyName>
     <PackageId>Harvest.Sdk</PackageId>
@@ -26,13 +26,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\assets\ProjectIcon.png" Pack="true" PackagePath=""/>
+    <None Include="..\..\assets\ProjectIcon.png" Pack="true" PackagePath="" />
     <None Include="..\..\LICENSE" Pack="true" PackagePath="" />
     <None Include="..\..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="all" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" />
     <PackageReference Include="Tavis.UriTemplates" Version="2.0.0" />

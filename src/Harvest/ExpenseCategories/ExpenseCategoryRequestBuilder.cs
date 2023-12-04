@@ -30,7 +30,7 @@ public class ExpenseCategoryRequestBuilder : RequestBuilder
     /// Retrieves an expense category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expense-categories/#retrieve-an-expense-category
+    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expense-categories/#retrieve-an-expense-category.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -48,7 +48,7 @@ public class ExpenseCategoryRequestBuilder : RequestBuilder
     /// Updates an expense category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expense-categories/#update-an-expense-category
+    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expense-categories/#update-an-expense-category.
     /// </remarks>
     /// <param name="body">The expense category details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -70,7 +70,7 @@ public class ExpenseCategoryRequestBuilder : RequestBuilder
     /// Deletes an expense category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expense-categories/#delete-an-expense-category
+    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expense-categories/#delete-an-expense-category.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

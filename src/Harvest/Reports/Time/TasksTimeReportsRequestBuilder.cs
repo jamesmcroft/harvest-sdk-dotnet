@@ -32,7 +32,7 @@ public class TasksTimeReportsRequestBuilder : RequestBuilder
     /// Retrieves a list of tasks time reports.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/reports-api/reports/time-reports/#tasks-report
+    /// For more information: https://help.getharvest.com/api-v2/reports-api/reports/time-reports/#tasks-report.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -43,7 +43,8 @@ public class TasksTimeReportsRequestBuilder : RequestBuilder
         CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
-        return await this.RequestAdapter.SendAsync<ResultsResponse<TaskTimeReport>>(requestInfo,
+        return await this.RequestAdapter.SendAsync<ResultsResponse<TaskTimeReport>>(
+            requestInfo,
             cancellationToken);
     }
 

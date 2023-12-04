@@ -18,7 +18,8 @@ public class InvoiceMessageRequestBuilder : RequestBuilder
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public InvoiceMessageRequestBuilder(Dictionary<string, object> pathParameters,
+    public InvoiceMessageRequestBuilder(
+        Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
         : base("{+baseurl}/invoices/{+invoiceid}/messages/{+invoicemessageid}", pathParameters, requestAdapter)
     {
@@ -28,7 +29,7 @@ public class InvoiceMessageRequestBuilder : RequestBuilder
     /// Deletes an invoice message.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-messages/#delete-an-invoice-message
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-messages/#delete-an-invoice-message.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

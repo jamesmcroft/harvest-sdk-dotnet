@@ -30,41 +30,22 @@ public class HarvestRequestAdapter : IDisposable
     }
 
     /// <summary>
-    /// Gets the authentication credential used to authenticate the client.
-    /// </summary>
-    protected internal AuthCredential Credential { get; }
-
-    /// <summary>
     /// Gets or sets the base URL for every request.
     /// </summary>
     public string BaseUrl { get; set; }
 
     /// <summary>
-    /// Gets or sets the base headers for every request.
+    /// Gets the base headers for every request.
     /// </summary>
     public Headers Headers { get; } = new();
 
-    /// <inheritdoc />
-    public void Dispose()
-    {
-        this.Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
     /// <summary>
-    /// Disposes the object.
+    /// Gets the authentication credential used to authenticate the client.
     /// </summary>
-    /// <param name="disposing">A value indicating whether the object is disposing.</param>
-    protected virtual void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            this.httpClient.Dispose();
-        }
-    }
+    protected internal AuthCredential Credential { get; }
 
     /// <summary>
-    /// Sends a request to the Harvest API with a response of type <see cref="T"/>.
+    /// Sends a request to the Harvest API with a response of type <typeparamref name="T"/>.
     /// </summary>
     /// <typeparam name="T">The type of response returned by the request.</typeparam>
     /// <param name="requestInfo">The request information to send.</param>
@@ -77,7 +58,7 @@ public class HarvestRequestAdapter : IDisposable
     {
         HttpResponseMessage response = await this.GetHttpResponseMessageAsync(requestInfo, cancellationToken);
         requestInfo.Content?.Dispose();
-        string responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
         if (response.IsSuccessStatusCode)
         {
             return JsonConvert.DeserializeObject<T>(responseContent);
@@ -99,10 +80,29 @@ public class HarvestRequestAdapter : IDisposable
     {
         HttpResponseMessage response = await this.GetHttpResponseMessageAsync(requestInfo, cancellationToken);
         requestInfo.Content?.Dispose();
-        string responseContent = await response.Content.ReadAsStringAsync();
+        string responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
         if (!response.IsSuccessStatusCode)
         {
             throw new HttpRequestException(responseContent);
+        }
+    }
+
+    /// <inheritdoc />
+    public void Dispose()
+    {
+        this.Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    /// <summary>
+    /// Disposes the object.
+    /// </summary>
+    /// <param name="disposing">A value indicating whether the object is disposing.</param>
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            this.httpClient.Dispose();
         }
     }
 
@@ -136,7 +136,8 @@ public class HarvestRequestAdapter : IDisposable
         Uri requestUri = requestInfo.URI;
         var message = new HttpRequestMessage
         {
-            Method = new HttpMethod(requestInfo.HttpMethod.ToString().ToUpperInvariant()), RequestUri = requestUri
+            Method = new HttpMethod(requestInfo.HttpMethod.ToString().ToUpperInvariant()),
+            RequestUri = requestUri
         };
 
         if (requestInfo.Content != null && requestInfo.Content != Stream.Null)

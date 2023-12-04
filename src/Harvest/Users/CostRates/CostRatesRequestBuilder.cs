@@ -43,7 +43,7 @@ public class CostRatesRequestBuilder : RequestBuilder
     /// Retrieves a list of cost rates for the user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/cost-rates/#list-all-cost-rates-for-a-specific-user
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/cost-rates/#list-all-cost-rates-for-a-specific-user.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -61,7 +61,7 @@ public class CostRatesRequestBuilder : RequestBuilder
     /// Creates a new cost rate for the user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/cost-rates/#create-a-cost-rate
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/cost-rates/#create-a-cost-rate.
     /// </remarks>
     /// <param name="body">The cost rate to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

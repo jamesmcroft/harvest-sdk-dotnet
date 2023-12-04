@@ -40,7 +40,7 @@ public class InvoiceRequestBuilder : RequestBuilder
     /// Retrieves an invoice.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#retrieve-an-invoice
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#retrieve-an-invoice.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -58,7 +58,7 @@ public class InvoiceRequestBuilder : RequestBuilder
     /// Updates an invoice.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#update-an-invoice
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#update-an-invoice.
     /// </remarks>
     /// <param name="body">The invoice details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -80,7 +80,7 @@ public class InvoiceRequestBuilder : RequestBuilder
     /// Deletes an invoice.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#delete-an-invoice
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoices/#delete-an-invoice.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

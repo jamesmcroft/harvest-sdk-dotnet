@@ -29,7 +29,11 @@ internal class HarvestTimeValueConverter : JsonConverter
             return null;
         }
 
-        if (DateTime.TryParseExact(value, "h:mmtt", CultureInfo.InvariantCulture, DateTimeStyles.None,
+        if (DateTime.TryParseExact(
+                value,
+                "h:mmtt",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
                 out DateTime dateTime))
         {
             return dateTime.TimeOfDay;

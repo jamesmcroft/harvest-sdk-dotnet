@@ -19,7 +19,8 @@ public class EstimateItemCategoryRequestBuilder : RequestBuilder
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public EstimateItemCategoryRequestBuilder(Dictionary<string, object> pathParameters,
+    public EstimateItemCategoryRequestBuilder(
+        Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
         : base("{+baseurl}/estimate_item_categories/{+estimateitemcategoryid}", pathParameters, requestAdapter)
     {
@@ -29,7 +30,7 @@ public class EstimateItemCategoryRequestBuilder : RequestBuilder
     /// Retrieves an estimate item category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-item-categories/#retrieve-an-estimate-item-category
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-item-categories/#retrieve-an-estimate-item-category.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -47,7 +48,7 @@ public class EstimateItemCategoryRequestBuilder : RequestBuilder
     /// Updates an estimate item category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-item-categories/#update-an-estimate-item-category
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-item-categories/#update-an-estimate-item-category.
     /// </remarks>
     /// <param name="body">The estimate item category details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -69,7 +70,7 @@ public class EstimateItemCategoryRequestBuilder : RequestBuilder
     /// Deletes an estimate item category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-item-categories/#delete-an-estimate-item-category
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-item-categories/#delete-an-estimate-item-category.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

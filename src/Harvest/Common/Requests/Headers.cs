@@ -74,6 +74,7 @@ public class Headers : IDictionary<string, IEnumerable<string>>
     /// </summary>
     /// <param name="headerName">The name of the header to remove the value from.</param>
     /// <param name="headerValue">The value to remove from the header.</param>
+    /// <returns><see langword="true"/> if the value was removed; otherwise, <see langword="false"/>.</returns>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="headerName"/> or <paramref name="headerValue"/> is <see langword="null"/>.</exception>
     public bool Remove(string headerName, string headerValue)
     {
@@ -189,6 +190,8 @@ public class Headers : IDictionary<string, IEnumerable<string>>
     /// <summary>
     /// This method is not implemented.
     /// </summary>
+    /// <param name="array">Array is not implemented.</param>
+    /// <param name="arrayIndex">Array index is not implemented.</param>
     /// <exception cref="NotImplementedException">Thrown as this method is not implemented.</exception>
     public void CopyTo(KeyValuePair<string, IEnumerable<string>>[] array, int arrayIndex)
     {
@@ -207,6 +210,7 @@ public class Headers : IDictionary<string, IEnumerable<string>>
         return new RequestHeadersEnumerator(this.headers.GetEnumerator());
     }
 
+    /// <inheritdoc/>
     IEnumerator IEnumerable.GetEnumerator()
     {
         return this.GetEnumerator();

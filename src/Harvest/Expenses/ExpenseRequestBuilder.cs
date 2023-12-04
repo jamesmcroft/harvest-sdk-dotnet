@@ -28,7 +28,7 @@ public class ExpenseRequestBuilder : RequestBuilder
     /// Retrieves an expense.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expenses/#retrieve-an-expense
+    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expenses/#retrieve-an-expense.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -46,7 +46,7 @@ public class ExpenseRequestBuilder : RequestBuilder
     /// Updates an expense.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expenses/#update-an-expense
+    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expenses/#update-an-expense.
     /// </remarks>
     /// <param name="body">The project details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -68,7 +68,7 @@ public class ExpenseRequestBuilder : RequestBuilder
     /// Deletes an expense.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expenses/#delete-an-expense
+    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expenses/#delete-an-expense.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

@@ -33,7 +33,7 @@ public class MeRequestBuilder : RequestBuilder
     /// Retrieves the current authenticated user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#retrieve-the-currently-authenticated-user
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#retrieve-the-currently-authenticated-user.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

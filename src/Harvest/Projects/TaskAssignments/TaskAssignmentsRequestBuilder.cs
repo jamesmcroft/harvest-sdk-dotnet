@@ -22,8 +22,10 @@ public class TaskAssignmentsRequestBuilder : RequestBuilder
     public TaskAssignmentsRequestBuilder(
         Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
-        : base("{+baseurl}/projects/{+projectid}/task_assignments{?is_active,updated_since,page,per_page}",
-            pathParameters, requestAdapter)
+        : base(
+            "{+baseurl}/projects/{+projectid}/task_assignments{?is_active,updated_since,page,per_page}",
+            pathParameters,
+            requestAdapter)
     {
     }
 
@@ -46,7 +48,7 @@ public class TaskAssignmentsRequestBuilder : RequestBuilder
     /// Retrieves a list of all project task assignments.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#list-all-task-assignments-for-a-specific-project
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#list-all-task-assignments-for-a-specific-project.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -64,7 +66,7 @@ public class TaskAssignmentsRequestBuilder : RequestBuilder
     /// Creates a new project task assignment.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#create-a-task-assignment
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#create-a-task-assignment.
     /// </remarks>
     /// <param name="body">The task assignment to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

@@ -48,7 +48,7 @@ public class UsersRequestBuilder : RequestBuilder
     /// Retrieves a list of users.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#list-all-users
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#list-all-users.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -66,7 +66,7 @@ public class UsersRequestBuilder : RequestBuilder
     /// Creates a new user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#create-a-user
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#create-a-user.
     /// </remarks>
     /// <param name="body">The user to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

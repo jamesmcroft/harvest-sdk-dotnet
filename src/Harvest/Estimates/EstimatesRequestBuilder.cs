@@ -20,7 +20,9 @@ public class EstimatesRequestBuilder : RequestBuilder
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
     public EstimatesRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
-        : base("{+baseurl}/estimates{?client_id,updated_since,from,to,state,page,per_page}", pathParameters,
+        : base(
+            "{+baseurl}/estimates{?client_id,updated_since,from,to,state,page,per_page}",
+            pathParameters,
             requestAdapter)
     {
     }
@@ -44,7 +46,7 @@ public class EstimatesRequestBuilder : RequestBuilder
     /// Retrieves a list of estimates.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimates/#list-all-estimates
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimates/#list-all-estimates.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -62,7 +64,7 @@ public class EstimatesRequestBuilder : RequestBuilder
     /// Creates a new estimate.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimates/#create-an-estimate
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimates/#create-an-estimate.
     /// </remarks>
     /// <param name="body">The estimate to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

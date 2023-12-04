@@ -1,4 +1,4 @@
-﻿namespace Harvest.Invoices.Models;
+namespace Harvest.Invoices.Models;
 
 using Common.Serialization;
 
@@ -10,21 +10,20 @@ public enum ExpenseImportSummaryType
     /// <summary>
     /// The expenses are summarized by project.
     /// </summary>
-    [EnumStringValue("project")]
-    Project,
+    [EnumStringValue("project")] Project,
+
     /// <summary>
     /// The expenses are summarized by category.
     /// </summary>
-    [EnumStringValue("category")]
-    Category,
+    [EnumStringValue("category")] Category,
+
     /// <summary>
     /// The expenses are summarized by person.
     /// </summary>
-    [EnumStringValue("people")]
-    People,
+    [EnumStringValue("people")] People,
+
     /// <summary>
     /// The expenses are summarized by detail.
     /// </summary>
-    [EnumStringValue("detailed")]
-    Detailed
+    [EnumStringValue("detailed")] Detailed
 }

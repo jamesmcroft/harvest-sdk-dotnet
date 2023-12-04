@@ -28,7 +28,7 @@ public class CompanyRequestBuilder : RequestBuilder
     /// Retrieves the company.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/company-api/company/company/#retrieve-a-company
+    /// For more information: https://help.getharvest.com/api-v2/company-api/company/company/#retrieve-a-company.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -46,7 +46,7 @@ public class CompanyRequestBuilder : RequestBuilder
     /// Updates a company.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/company-api/company/company/#update-a-company
+    /// For more information: https://help.getharvest.com/api-v2/company-api/company/company/#update-a-company.
     /// </remarks>
     /// <param name="body">The company details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

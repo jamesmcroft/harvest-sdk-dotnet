@@ -19,10 +19,13 @@ public class ExpenseCategoriesRequestBuilder : RequestBuilder
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public ExpenseCategoriesRequestBuilder(Dictionary<string, object> pathParameters,
+    public ExpenseCategoriesRequestBuilder(
+        Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
-        : base("{+baseurl}/expense_categories{?is_active,updated_since,page,per_page}",
-            pathParameters, requestAdapter)
+        : base(
+            "{+baseurl}/expense_categories{?is_active,updated_since,page,per_page}",
+            pathParameters,
+            requestAdapter)
     {
     }
 
@@ -45,7 +48,7 @@ public class ExpenseCategoriesRequestBuilder : RequestBuilder
     /// Retrieves a list of expense categories.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expense-categories/#list-all-expense-categories
+    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expense-categories/#list-all-expense-categories.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -63,7 +66,7 @@ public class ExpenseCategoriesRequestBuilder : RequestBuilder
     /// Creates a new expense category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expense-categories/#create-an-expense-category
+    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expense-categories/#create-an-expense-category.
     /// </remarks>
     /// <param name="body">The expense category to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

@@ -18,7 +18,8 @@ public class EstimateMessageRequestBuilder : RequestBuilder
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public EstimateMessageRequestBuilder(Dictionary<string, object> pathParameters,
+    public EstimateMessageRequestBuilder(
+        Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
         : base("{+baseurl}/estimates/{+estimateid}/messages/{+estimatemessageid}", pathParameters, requestAdapter)
     {
@@ -28,7 +29,7 @@ public class EstimateMessageRequestBuilder : RequestBuilder
     /// Deletes an estimate message.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-messages/#delete-an-estimate-message
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-messages/#delete-an-estimate-message.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

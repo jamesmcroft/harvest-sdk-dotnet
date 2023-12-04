@@ -22,7 +22,8 @@ public class UserAssignmentsRequestBuilder : RequestBuilder
     public UserAssignmentsRequestBuilder(
         Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
-        : base("{+baseurl}/user_assignments{?user_id,is_active,updated_since,page,per_page}",
+        : base(
+            "{+baseurl}/user_assignments{?user_id,is_active,updated_since,page,per_page}",
             pathParameters,
             requestAdapter)
     {
@@ -32,7 +33,7 @@ public class UserAssignmentsRequestBuilder : RequestBuilder
     /// Retrieves a list of all project user assignments.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/user-assignments/#list-all-user-assignments
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/user-assignments/#list-all-user-assignments.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

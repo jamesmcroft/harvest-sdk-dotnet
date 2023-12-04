@@ -28,7 +28,7 @@ public class TeammatesRequestBuilder : RequestBuilder
     /// Retrieves a list of teammates for the user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/teammates/#list-all-assigned-teammates-for-a-specific-user
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/teammates/#list-all-assigned-teammates-for-a-specific-user.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -46,7 +46,7 @@ public class TeammatesRequestBuilder : RequestBuilder
     /// Retrieves a list of teammates for the user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/teammates/#update-a-users-assigned-teammates
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/teammates/#update-a-users-assigned-teammates.
     /// </remarks>
     /// <param name="body">The request body.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

@@ -22,7 +22,8 @@ public class TaskAssignmentsRequestBuilder : RequestBuilder
     public TaskAssignmentsRequestBuilder(
         Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
-        : base("{+baseurl}/task_assignments{?is_active,updated_since,page,per_page}",
+        : base(
+            "{+baseurl}/task_assignments{?is_active,updated_since,page,per_page}",
             pathParameters,
             requestAdapter)
     {
@@ -32,7 +33,7 @@ public class TaskAssignmentsRequestBuilder : RequestBuilder
     /// Retrieves a list of all your task assignments.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#list-all-task-assignments
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#list-all-task-assignments.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

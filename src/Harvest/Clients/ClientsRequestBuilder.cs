@@ -42,7 +42,7 @@ public class ClientsRequestBuilder : RequestBuilder
     /// Retrieves a list of clients.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/clients/#list-all-clients
+    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/clients/#list-all-clients.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -60,7 +60,7 @@ public class ClientsRequestBuilder : RequestBuilder
     /// Creates a new client.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/clients/#create-a-client
+    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/clients/#create-a-client.
     /// </remarks>
     /// <param name="body">The client to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

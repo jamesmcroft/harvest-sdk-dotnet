@@ -5,6 +5,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Authentication;
 
+/// <summary>
+/// Defines the client used to communicate with the Harvest API.
+/// </summary>
 public partial class HarvestServiceClient
 {
     private readonly AuthCredential authCredential;

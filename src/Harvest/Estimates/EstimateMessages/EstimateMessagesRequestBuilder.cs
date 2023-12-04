@@ -19,9 +19,12 @@ public class EstimateMessagesRequestBuilder : RequestBuilder
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public EstimateMessagesRequestBuilder(Dictionary<string, object> pathParameters,
+    public EstimateMessagesRequestBuilder(
+        Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
-        : base("{+baseurl}/estimates/{+estimateid}/messages{?updated_since,page,per_page}", pathParameters,
+        : base(
+            "{+baseurl}/estimates/{+estimateid}/messages{?updated_since,page,per_page}",
+            pathParameters,
             requestAdapter)
     {
     }
@@ -45,7 +48,7 @@ public class EstimateMessagesRequestBuilder : RequestBuilder
     /// Retrieves a list of estimate messages.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-messages/#list-all-messages-for-an-estimate
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-messages/#list-all-messages-for-an-estimate.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -63,7 +66,7 @@ public class EstimateMessagesRequestBuilder : RequestBuilder
     /// Creates a new estimate message.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-messages/#create-an-estimate-message
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-messages/#create-an-estimate-message.
     /// </remarks>
     /// <param name="body">The estimate message to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

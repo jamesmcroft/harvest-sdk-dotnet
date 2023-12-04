@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 public class CreateInvoicePayment
 {
     /// <summary>
-    /// Gets or set the amount of the payment.
+    /// Gets or sets the amount of the payment.
     /// </summary>
     [JsonProperty("amount")]
     public decimal Amount { get; set; }

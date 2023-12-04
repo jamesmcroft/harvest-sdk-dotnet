@@ -43,7 +43,7 @@ public class BillableRatesRequestBuilder : RequestBuilder
     /// Retrieves a list of billable rates for the user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/billable-rates/#list-all-billable-rates-for-a-specific-user
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/billable-rates/#list-all-billable-rates-for-a-specific-user.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -61,7 +61,7 @@ public class BillableRatesRequestBuilder : RequestBuilder
     /// Creates a new billable rate for the user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/billable-rates/#create-a-billable-rate
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/billable-rates/#create-a-billable-rate.
     /// </remarks>
     /// <param name="body">The billable rate to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

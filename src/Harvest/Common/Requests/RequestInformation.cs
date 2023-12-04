@@ -48,13 +48,15 @@ public class RequestInformation
             var parsedUrlTemplate = new UriTemplate(this.UrlTemplate);
             foreach (KeyValuePair<string, object> urlTemplateParameter in this.PathParameters)
             {
-                parsedUrlTemplate.SetParameter(urlTemplateParameter.Key,
+                parsedUrlTemplate.SetParameter(
+                    urlTemplateParameter.Key,
                     GetSanitizedValue(urlTemplateParameter.Value));
             }
 
             foreach (KeyValuePair<string, object> queryStringParameter in this.QueryParameters)
             {
-                parsedUrlTemplate.SetParameter(queryStringParameter.Key,
+                parsedUrlTemplate.SetParameter(
+                    queryStringParameter.Key,
                     GetSanitizedValue(queryStringParameter.Value));
             }
 
@@ -123,23 +125,20 @@ public class RequestInformation
             return;
         }
 
-        foreach ((string Name, object Value) property in source.GetType()
+        foreach ((string name, object value) in source.GetType()
                      .GetProperties()
-                     .Select(
-                         prop => (
-                             Name: prop.GetCustomAttributes(false)
-                                 .OfType<QueryParameterAttribute>()
-                                 .FirstOrDefault()?.TemplateName ?? prop.Name.ToFirstCharacterLowerCase(),
-                             Value: prop.GetValue(source)
-                         )
-                     )
+                     .Select(prop => (
+                         Name: prop.GetCustomAttributes(false)
+                             .OfType<QueryParameterAttribute>()
+                             .FirstOrDefault()?.TemplateName ?? prop.Name.ToFirstCharacterLowerCase(),
+                         Value: prop.GetValue(source)))
                      .Where(queryProp => queryProp.Value != null &&
                                          !this.QueryParameters.ContainsKey(queryProp.Name) &&
                                          !string.IsNullOrEmpty(queryProp.Value.ToString()) &&
                                          (queryProp.Value is not ICollection collection ||
                                           collection.Count > 0)))
         {
-            this.QueryParameters.AddOrReplace(property.Name, property.Value);
+            this.QueryParameters.AddOrReplace(name, value);
         }
     }
 

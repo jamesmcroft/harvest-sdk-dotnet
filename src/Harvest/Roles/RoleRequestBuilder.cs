@@ -28,7 +28,7 @@ public class RoleRequestBuilder : RequestBuilder
     /// Retrieves a role.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/roles-api/roles/roles/#retrieve-a-role
+    /// For more information: https://help.getharvest.com/api-v2/roles-api/roles/roles/#retrieve-a-role.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -46,7 +46,7 @@ public class RoleRequestBuilder : RequestBuilder
     /// Updates a role.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/roles-api/roles/roles/#update-a-role
+    /// For more information: https://help.getharvest.com/api-v2/roles-api/roles/roles/#update-a-role.
     /// </remarks>
     /// <param name="body">The role details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -68,7 +68,7 @@ public class RoleRequestBuilder : RequestBuilder
     /// Deletes a role.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/roles-api/roles/roles/#delete-a-role
+    /// For more information: https://help.getharvest.com/api-v2/roles-api/roles/roles/#delete-a-role.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
