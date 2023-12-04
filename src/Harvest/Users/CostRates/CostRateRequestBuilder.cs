@@ -28,7 +28,7 @@ public class CostRateRequestBuilder : RequestBuilder
     /// Retrieves a cost rate for a user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/cost-rates/#retrieve-a-cost-rate
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/cost-rates/#retrieve-a-cost-rate.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

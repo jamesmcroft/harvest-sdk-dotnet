@@ -28,7 +28,7 @@ public class TaskAssignmentRequestBuilder : RequestBuilder
     /// Retrieves a task assignment.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#retrieve-a-task-assignment
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#retrieve-a-task-assignment.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -46,7 +46,7 @@ public class TaskAssignmentRequestBuilder : RequestBuilder
     /// Updates a task assignment.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#update-a-task-assignment
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#update-a-task-assignment.
     /// </remarks>
     /// <param name="body">The task assignment details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -68,7 +68,7 @@ public class TaskAssignmentRequestBuilder : RequestBuilder
     /// Deletes a task assignment.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#delete-a-task-assignment
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/#delete-a-task-assignment.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

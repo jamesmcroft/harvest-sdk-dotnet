@@ -31,7 +31,7 @@ public class ProjectBudgetReportsRequestBuilder : RequestBuilder
     /// Retrieves a list of project budget reports.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/reports-api/reports/project-budget-report/#project-budget-report
+    /// For more information: https://help.getharvest.com/api-v2/reports-api/reports/project-budget-report/#project-budget-report.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -42,7 +42,8 @@ public class ProjectBudgetReportsRequestBuilder : RequestBuilder
         CancellationToken cancellationToken = default)
     {
         RequestInformation requestInfo = this.ToGetRequestInformation(requestConfiguration);
-        return await this.RequestAdapter.SendAsync<ResultsResponse<ProjectBudgetReport>>(requestInfo,
+        return await this.RequestAdapter.SendAsync<ResultsResponse<ProjectBudgetReport>>(
+            requestInfo,
             cancellationToken);
     }
 

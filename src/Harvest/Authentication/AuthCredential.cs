@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 public abstract class AuthCredential
 {
     /// <summary>
-    /// Gets the access token of the Harvest account.
+    /// Gets or sets the access token of the Harvest account.
     /// </summary>
     public AccessToken AccessToken { get; protected set; }
 

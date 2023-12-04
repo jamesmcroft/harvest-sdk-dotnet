@@ -42,7 +42,7 @@ public class ContactsRequestBuilder : RequestBuilder
     /// Retrieves a list of contacts.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/contacts/#list-all-contacts
+    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/contacts/#list-all-contacts.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -60,7 +60,7 @@ public class ContactsRequestBuilder : RequestBuilder
     /// Creates a new contact.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/contacts/#create-a-contact
+    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/contacts/#create-a-contact.
     /// </remarks>
     /// <param name="body">The contact to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

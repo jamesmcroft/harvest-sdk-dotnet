@@ -28,7 +28,7 @@ public class TimeEntryRequestBuilder : RequestBuilder
     /// Retrieves a time entry.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#retrieve-a-time-entry
+    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#retrieve-a-time-entry.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -46,7 +46,7 @@ public class TimeEntryRequestBuilder : RequestBuilder
     /// Updates a time entry.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#update-a-time-entry
+    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#update-a-time-entry.
     /// </remarks>
     /// <param name="body">The time entry details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -68,7 +68,7 @@ public class TimeEntryRequestBuilder : RequestBuilder
     /// Deletes a time entry.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#delete-a-time-entry
+    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#delete-a-time-entry.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -86,7 +86,7 @@ public class TimeEntryRequestBuilder : RequestBuilder
     /// Restarts the time tracking for a time entry.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#restart-a-stopped-time-entry
+    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#restart-a-stopped-time-entry.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -104,7 +104,7 @@ public class TimeEntryRequestBuilder : RequestBuilder
     /// Stops the time tracking for a time entry.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#stop-a-running-time-entry
+    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#stop-a-running-time-entry.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

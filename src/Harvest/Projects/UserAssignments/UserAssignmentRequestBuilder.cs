@@ -28,7 +28,7 @@ public class UserAssignmentRequestBuilder : RequestBuilder
     /// Retrieves a user assignment.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/user-assignments/#retrieve-a-user-assignment
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/user-assignments/#retrieve-a-user-assignment.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -46,7 +46,7 @@ public class UserAssignmentRequestBuilder : RequestBuilder
     /// Updates a user assignment.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/user-assignments/#update-a-user-assignment
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/user-assignments/#update-a-user-assignment.
     /// </remarks>
     /// <param name="body">The user assignment details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -68,7 +68,7 @@ public class UserAssignmentRequestBuilder : RequestBuilder
     /// Deletes a user assignment.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/user-assignments/#delete-a-user-assignment
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/user-assignments/#delete-a-user-assignment.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

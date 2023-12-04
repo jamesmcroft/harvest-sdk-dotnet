@@ -19,7 +19,8 @@ public class EstimateItemCategoriesRequestBuilder : RequestBuilder
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public EstimateItemCategoriesRequestBuilder(Dictionary<string, object> pathParameters,
+    public EstimateItemCategoriesRequestBuilder(
+        Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
         : base("{+baseurl}/estimate_item_categories{?updated_since,page,per_page}", pathParameters, requestAdapter)
     {
@@ -47,7 +48,7 @@ public class EstimateItemCategoriesRequestBuilder : RequestBuilder
     /// Retrieves a list of estimate item categories.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-item-categories/#list-all-estimate-item-categories
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-item-categories/#list-all-estimate-item-categories.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -65,7 +66,7 @@ public class EstimateItemCategoriesRequestBuilder : RequestBuilder
     /// Creates a new estimate item category.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-item-categories/#create-an-estimate-item-category
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimate-item-categories/#create-an-estimate-item-category.
     /// </remarks>
     /// <param name="body">The estimate item category to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

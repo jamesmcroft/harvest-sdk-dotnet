@@ -34,7 +34,7 @@ public class EstimateRequestBuilder : RequestBuilder
     /// Retrieves an estimate.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimates/#retrieve-an-estimate
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimates/#retrieve-an-estimate.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -52,7 +52,7 @@ public class EstimateRequestBuilder : RequestBuilder
     /// Updates an estimate.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimates/#update-an-estimate
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimates/#update-an-estimate.
     /// </remarks>
     /// <param name="body">The estimate details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -74,7 +74,7 @@ public class EstimateRequestBuilder : RequestBuilder
     /// Deletes an estimate.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimates/#delete-an-estimate
+    /// For more information: https://help.getharvest.com/api-v2/estimates-api/estimates/estimates/#delete-an-estimate.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

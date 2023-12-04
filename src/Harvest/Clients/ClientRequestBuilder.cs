@@ -28,7 +28,7 @@ public class ClientRequestBuilder : RequestBuilder
     /// Retrieves a client.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/clients/#retrieve-a-client
+    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/clients/#retrieve-a-client.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -46,7 +46,7 @@ public class ClientRequestBuilder : RequestBuilder
     /// Updates a client.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/clients/#update-a-client
+    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/clients/#update-a-client.
     /// </remarks>
     /// <param name="body">The client details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -68,7 +68,7 @@ public class ClientRequestBuilder : RequestBuilder
     /// Deletes a client.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/clients/#delete-a-client
+    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/clients/#delete-a-client.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

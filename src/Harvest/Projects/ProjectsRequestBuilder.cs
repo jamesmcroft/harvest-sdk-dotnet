@@ -42,7 +42,7 @@ public class ProjectsRequestBuilder : RequestBuilder
     /// Retrieves a list of projects.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#list-all-projects
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#list-all-projects.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -60,7 +60,7 @@ public class ProjectsRequestBuilder : RequestBuilder
     /// Creates a new project.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#create-a-project
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#create-a-project.
     /// </remarks>
     /// <param name="body">The project to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

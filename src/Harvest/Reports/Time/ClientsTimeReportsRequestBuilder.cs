@@ -32,7 +32,7 @@ public class ClientsTimeReportsRequestBuilder : RequestBuilder
     /// Retrieves a list of clients time reports.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/reports-api/reports/time-reports/#clients-report
+    /// For more information: https://help.getharvest.com/api-v2/reports-api/reports/time-reports/#clients-report.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

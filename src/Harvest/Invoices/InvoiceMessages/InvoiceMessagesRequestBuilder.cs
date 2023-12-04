@@ -19,9 +19,12 @@ public class InvoiceMessagesRequestBuilder : RequestBuilder
     /// <param name="pathParameters">The default path parameters to use to build the request URL.</param>
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
-    public InvoiceMessagesRequestBuilder(Dictionary<string, object> pathParameters,
+    public InvoiceMessagesRequestBuilder(
+        Dictionary<string, object> pathParameters,
         HarvestRequestAdapter requestAdapter)
-        : base("{+baseurl}/invoices/{+invoiceid}/messages{?updated_since,page,per_page}", pathParameters,
+        : base(
+            "{+baseurl}/invoices/{+invoiceid}/messages{?updated_since,page,per_page}",
+            pathParameters,
             requestAdapter)
     {
     }
@@ -45,7 +48,7 @@ public class InvoiceMessagesRequestBuilder : RequestBuilder
     /// Retrieves a list of invoice messages.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-messages/#list-all-messages-for-an-invoice
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-messages/#list-all-messages-for-an-invoice.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -63,7 +66,7 @@ public class InvoiceMessagesRequestBuilder : RequestBuilder
     /// Creates a new invoice message.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-messages/#create-an-invoice-message
+    /// For more information: https://help.getharvest.com/api-v2/invoices-api/invoices/invoice-messages/#create-an-invoice-message.
     /// </remarks>
     /// <param name="body">The invoice message to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

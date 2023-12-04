@@ -20,7 +20,7 @@ public class TeamTimeReport : TimeReportSummary
     public string UserName { get; set; }
 
     /// <summary>
-    /// Gets or set a value indicating whether the team user is a contractor.
+    /// Gets or sets a value indicating whether the team user is a contractor.
     /// </summary>
     [JsonProperty("is_contractor")]
     public bool? IsContractor { get; set; }

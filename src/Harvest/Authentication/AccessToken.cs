@@ -51,7 +51,7 @@ public class AccessToken
     {
         unchecked
         {
-            int hashCode = (this.Token != null ? this.Token.GetHashCode() : 0);
+            int hashCode = this.Token != null ? this.Token.GetHashCode() : 0;
             hashCode = (hashCode * 397) ^ this.ExpiresOn.GetHashCode();
             hashCode = (hashCode * 397) ^ (this.RefreshToken != null ? this.RefreshToken.GetHashCode() : 0);
             return hashCode;

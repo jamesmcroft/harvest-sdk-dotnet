@@ -40,7 +40,7 @@ public class ProjectRequestBuilder : RequestBuilder
     /// Retrieves a project.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#retrieve-a-project
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#retrieve-a-project.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -58,7 +58,7 @@ public class ProjectRequestBuilder : RequestBuilder
     /// Updates a project.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#update-a-project
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#update-a-project.
     /// </remarks>
     /// <param name="body">The project details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -80,7 +80,7 @@ public class ProjectRequestBuilder : RequestBuilder
     /// Deletes a project.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#delete-a-project
+    /// For more information: https://help.getharvest.com/api-v2/projects-api/projects/projects/#delete-a-project.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

@@ -28,7 +28,7 @@ public class ContactRequestBuilder : RequestBuilder
     /// Retrieves a contact.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/contacts/#retrieve-a-contact
+    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/contacts/#retrieve-a-contact.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -46,7 +46,7 @@ public class ContactRequestBuilder : RequestBuilder
     /// Updates a contact.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/contacts/#update-a-contact
+    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/contacts/#update-a-contact.
     /// </remarks>
     /// <param name="body">The contact details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -68,7 +68,7 @@ public class ContactRequestBuilder : RequestBuilder
     /// Deletes a contact.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/contacts/#delete-a-contact
+    /// For more information: https://help.getharvest.com/api-v2/clients-api/clients/contacts/#delete-a-contact.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

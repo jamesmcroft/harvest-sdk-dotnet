@@ -247,12 +247,16 @@ public class OAuthCredential : AuthCredential
     {
         if (this.AccessToken == null)
         {
-            this.AccessToken = new AccessToken(authResponse.AccessToken,
-                DateTimeOffset.UtcNow.AddSeconds(authResponse.ExpiresIn), authResponse.RefreshToken);
+            this.AccessToken = new AccessToken(
+                authResponse.AccessToken,
+                DateTimeOffset.UtcNow.AddSeconds(authResponse.ExpiresIn),
+                authResponse.RefreshToken);
         }
         else
         {
-            this.AccessToken.Update(authResponse.AccessToken, authResponse.ExpiresIn,
+            this.AccessToken.Update(
+                authResponse.AccessToken,
+                authResponse.ExpiresIn,
                 authResponse.RefreshToken);
         }
     }

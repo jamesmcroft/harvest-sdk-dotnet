@@ -28,7 +28,7 @@ public class TaskRequestBuilder : RequestBuilder
     /// Retrieves a task.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/tasks-api/tasks/tasks/#retrieve-a-task
+    /// For more information: https://help.getharvest.com/api-v2/tasks-api/tasks/tasks/#retrieve-a-task.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -46,7 +46,7 @@ public class TaskRequestBuilder : RequestBuilder
     /// Updates a task.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/tasks-api/tasks/tasks/#update-a-task
+    /// For more information: https://help.getharvest.com/api-v2/tasks-api/tasks/tasks/#update-a-task.
     /// </remarks>
     /// <param name="body">The task details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -68,7 +68,7 @@ public class TaskRequestBuilder : RequestBuilder
     /// Deletes a task.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/tasks-api/tasks/tasks/#delete-a-task
+    /// For more information: https://help.getharvest.com/api-v2/tasks-api/tasks/tasks/#delete-a-task.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

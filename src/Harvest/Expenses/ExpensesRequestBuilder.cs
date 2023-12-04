@@ -20,8 +20,10 @@ public class ExpensesRequestBuilder : RequestBuilder
     /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
     /// <exception cref="ArgumentNullException">Thrown when the <paramref name="pathParameters"/> or <paramref name="requestAdapter"/> is <see langword="null"/>.</exception>
     public ExpensesRequestBuilder(Dictionary<string, object> pathParameters, HarvestRequestAdapter requestAdapter)
-        : base("{+baseurl}/expenses{?user_id,client_id,project_id,is_billed,updated_since,from,to,page,per_page}",
-            pathParameters, requestAdapter)
+        : base(
+            "{+baseurl}/expenses{?user_id,client_id,project_id,is_billed,updated_since,from,to,page,per_page}",
+            pathParameters,
+            requestAdapter)
     {
     }
 
@@ -43,7 +45,7 @@ public class ExpensesRequestBuilder : RequestBuilder
     /// Retrieves a list of expenses.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expenses/#list-all-expenses
+    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expenses/#list-all-expenses.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -61,7 +63,7 @@ public class ExpensesRequestBuilder : RequestBuilder
     /// Creates a new expense.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expenses/#create-an-expense
+    /// For more information: https://help.getharvest.com/api-v2/expenses-api/expenses/expenses/#create-an-expense.
     /// </remarks>
     /// <param name="body">The expense to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

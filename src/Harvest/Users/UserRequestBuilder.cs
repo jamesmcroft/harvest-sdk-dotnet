@@ -52,7 +52,7 @@ public class UserRequestBuilder : RequestBuilder
     /// Retrieves a user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#retrieve-a-user
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#retrieve-a-user.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -70,7 +70,7 @@ public class UserRequestBuilder : RequestBuilder
     /// Updates a user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#update-a-user
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#update-a-user.
     /// </remarks>
     /// <param name="body">The user details to update. Any parameters not provided will be left unchanged.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
@@ -92,7 +92,7 @@ public class UserRequestBuilder : RequestBuilder
     /// Deletes a user.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#delete-a-user
+    /// For more information: https://help.getharvest.com/api-v2/users-api/users/users/#delete-a-user.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>

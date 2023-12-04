@@ -46,7 +46,7 @@ public class TimeEntriesRequestBuilder : RequestBuilder
     /// Retrieves a list of time entries.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#list-all-time-entries
+    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/#list-all-time-entries.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -64,7 +64,7 @@ public class TimeEntriesRequestBuilder : RequestBuilder
     /// Creates a new time entry.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries
+    /// For more information: https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries.
     /// </remarks>
     /// <param name="body">The time entry to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

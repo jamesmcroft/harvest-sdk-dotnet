@@ -3,6 +3,7 @@ namespace Harvest.Common.Requests;
 /// <summary>
 /// Defines the base configuration for a queryable request.
 /// </summary>
+/// <typeparam name="TQuery">The type of query parameters.</typeparam>
 public class QueryableRequestConfiguration<TQuery> : QueryableRequestConfiguration
     where TQuery : QueryParameters, new()
 {

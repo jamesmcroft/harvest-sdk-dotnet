@@ -42,7 +42,7 @@ public class TasksRequestBuilder : RequestBuilder
     /// Retrieves a list of tasks.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/tasks-api/tasks/tasks/#list-all-tasks
+    /// For more information: https://help.getharvest.com/api-v2/tasks-api/tasks/tasks/#list-all-tasks.
     /// </remarks>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <param name="cancellationToken">The optional cancellation token.</param>
@@ -60,7 +60,7 @@ public class TasksRequestBuilder : RequestBuilder
     /// Creates a new task.
     /// </summary>
     /// <remarks>
-    /// For more information: https://help.getharvest.com/api-v2/tasks-api/tasks/tasks/#create-a-task
+    /// For more information: https://help.getharvest.com/api-v2/tasks-api/tasks/tasks/#create-a-task.
     /// </remarks>
     /// <param name="body">The task to create.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>

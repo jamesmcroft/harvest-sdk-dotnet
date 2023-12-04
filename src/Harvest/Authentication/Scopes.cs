@@ -24,7 +24,7 @@ public static class Scopes
     /// Access to a Forecast account by ID.
     /// </summary>
     /// <param name="accountId">The Forecast account ID.</param>
-    /// <returns>Access to a Forecast account by ID.</returns>
+    /// <returns>The scope for accessing a Forecast account by ID.</returns>
     public static string ForecastAccount(string accountId)
     {
         return $"forecast:{accountId}";
@@ -34,7 +34,7 @@ public static class Scopes
     /// Access to a Harvest account by ID.
     /// </summary>
     /// <param name="accountId">The Harvest account ID.</param>
-    /// <returns>Access to a Harvest account by ID.</returns>
+    /// <returns>The scope for accessing a Harvest account by ID.</returns>
     public static string HarvestAccount(string accountId)
     {
         return $"harvest:{accountId}";

@@ -68,6 +68,7 @@ public abstract class RequestBuilder
     /// <summary>
     /// Builds the request to post a resource.
     /// </summary>
+    /// <typeparam name="TConfiguration">The type of request configuration.</typeparam>
     /// <param name="body">The request body.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
@@ -95,6 +96,7 @@ public abstract class RequestBuilder
     /// <summary>
     /// Builds the request to patch a resource.
     /// </summary>
+    /// <typeparam name="TConfiguration">The type of request configuration.</typeparam>
     /// <param name="body">The request body.</param>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
@@ -120,6 +122,7 @@ public abstract class RequestBuilder
     /// <summary>
     /// Builds the request to delete a resource.
     /// </summary>
+    /// <typeparam name="TConfiguration">The type of request configuration.</typeparam>
     /// <param name="requestConfiguration">The configuration for the request such as headers.</param>
     /// <returns>A request information object.</returns>
     public RequestInformation ToDeleteRequestInformation<TConfiguration>(
