@@ -1,7 +1,6 @@
 namespace Harvest.TimeEntries.Models;
 
 using System;
-using System.ComponentModel;
 using Common.Serialization;
 using Harvest.Clients.Models;
 using Harvest.Common.Responses;
@@ -127,14 +126,14 @@ public class TimeEntry : Entry
     public DateTime? TimerStartedAt { get; set; }
 
     /// <summary>
-    /// Gets or sets the time the time entry was started if tracking by start/end times.
+    /// Gets or sets the time that the time entry was started if tracking by start/end times.
     /// </summary>
     [JsonProperty("started_time")]
     [JsonConverter(typeof(HarvestTimeValueConverter))]
     public TimeSpan? StartedTime { get; set; }
 
     /// <summary>
-    /// Gets or sets the time the time entry was ended if tracking by start/end times.
+    /// Gets or sets the time that the time entry was ended if tracking by start/end times.
     /// </summary>
     [JsonProperty("ended_time")]
     [JsonConverter(typeof(HarvestTimeValueConverter))]
