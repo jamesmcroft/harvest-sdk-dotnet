@@ -1,5 +1,8 @@
 # Harvest Time Tracking .NET Client Library
 
+> [!IMPORTANT]
+> This repo has been archived and will no longer receive updates.
+
 [![GitHub Actions][badge_actions]][link_actions]
 [![GitHub Issues][badge_issues]][link_issues]
 [![GitHub Stars][badge_repo_stars]][link_repo]
