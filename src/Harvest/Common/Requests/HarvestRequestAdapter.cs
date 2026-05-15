@@ -58,7 +58,12 @@ public class HarvestRequestAdapter : IDisposable
     {
         HttpResponseMessage response = await this.GetHttpResponseMessageAsync(requestInfo, cancellationToken);
         requestInfo.Content?.Dispose();
-        string responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
+
+        string responseContent = await response.Content.ReadAsStringAsync(
+#if !NETFRAMEWORK
+            cancellationToken
+#endif
+            );
         if (response.IsSuccessStatusCode)
         {
             return JsonConvert.DeserializeObject<T>(responseContent);
@@ -80,7 +85,11 @@ public class HarvestRequestAdapter : IDisposable
     {
         HttpResponseMessage response = await this.GetHttpResponseMessageAsync(requestInfo, cancellationToken);
         requestInfo.Content?.Dispose();
-        string responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
+        string responseContent = await response.Content.ReadAsStringAsync(
+#if !NETFRAMEWORK
+            cancellationToken
+#endif
+            );
         if (!response.IsSuccessStatusCode)
         {
             throw new HttpRequestException(responseContent);
